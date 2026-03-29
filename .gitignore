@@ -26,9 +26,6 @@ yarn-error.log*
 # Local env files
 .env*.local
 
-# Vidéo > limite GitHub (100 Mo) — présente en local, pas versionnée
-public/videos/hautefeuille.mp4
-
 # Vercel
 .vercel
 

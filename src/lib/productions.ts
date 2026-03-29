@@ -59,9 +59,7 @@ export const productionShowcases: ProductionShowcase[] = [
       { value: "2", label: "Sites collège & lycée" },
       { value: "100%", label: "Accessibilité visée" },
     ],
-    videoSrc:
-      process.env.NEXT_PUBLIC_VIDEO_HAUTEFEUILLE_URL ||
-      "/videos/hautefeuille.mp4",
+    videoSrc: "/videos/hautefeuille.mp4",
     videoPoster: null,
   },
 ];

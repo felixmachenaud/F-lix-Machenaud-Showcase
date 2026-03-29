@@ -1,58 +1,74 @@
-# Vitrine — Premium One-Page Portfolio
+# WebSite Studio — Vitrine
 
-A high-converting, minimalist commercial portfolio website for freelance web creators. Built with Next.js, React, Tailwind CSS, and Framer Motion.
+Site vitrine pour **WebSite Studio** : présentation des services, tarifs, productions, prise de rendez-vous (Calendly) et formulaire de contact avec envoi d’e-mails.
 
-## Quick Start
+## Aperçu
+
+- **Next.js 14** (App Router), **React 18**, **TypeScript**
+- **Tailwind CSS** et **Framer Motion** pour le style et les animations
+- Formulaire contact via **Resend** (route API `/api/contact`)
+- Contenu et constantes centralisés dans `src/lib/` (ex. `site.ts`, `productions.ts`)
+
+## Pages principales
+
+| Route            | Contenu                                      |
+|------------------|----------------------------------------------|
+| `/`              | Accueil                                      |
+| `/services`      | Offre de services                            |
+| `/pricing`       | Tarifs                                       |
+| `/productions`   | Réalisations (vidéos / cartes)               |
+| `/a-propos`      | À propos                                     |
+| `/rendez-vous`   | Lien Calendly                                |
+| `/contact`       | Coordonnées + formulaire                     |
+
+## Prérequis
+
+- **Node.js** 18 ou supérieur  
+- **npm** (ou pnpm / yarn)
+
+## Installation
 
 ```bash
+git clone https://github.com/felixmachenaud/F-lix-Machenaud-Showcase.git
+cd F-lix-Machenaud-Showcase
 npm install
-npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the site.
+## Variables d’environnement
 
-## Personalize Your Content
+Copiez `.env.example` vers `.env.local` et renseignez les valeurs nécessaires :
 
-All editable content lives in **`src/lib/content.ts`**. Update these values with your real information:
+- **`RESEND_API_KEY`** — obligatoire pour l’envoi des messages du formulaire contact (compte [Resend](https://resend.com)).
+- **`RESEND_FROM_EMAIL`** — expéditeur des e-mails (domaine vérifié chez Resend en production).
+- **`NEXT_PUBLIC_CALENDLY_URL`** — optionnel si vous changez l’URL Calendly par défaut.
 
-| Section | What to change |
-|---------|----------------|
-| **`siteConfig`** | Your name, email, positioning sentence, and portrait image URL |
-| **`heroContent`** | Headline, subheadline, and CTA button labels |
-| **`projects`** | Replace with your actual portfolio projects (image URLs, titles, links) |
-| **`services`** | Your offer descriptions, inclusions, ideal clients |
-| **`pricing`** | Your real pricing tiers and amounts |
-| **`whyWorkWithMe`** | Your unique selling points |
-| **`aboutContent`** | Your bio and positioning |
-| **`contactContent`** | Final CTA copy |
+Ne commitez **jamais** `.env.local` (déjà ignoré par Git).
 
-### Portrait Image
-
-Replace `portraitPlaceholder` with your photo:
-
-- Use a high-quality image (min. 600×600px)
-- Host it on your domain or a CDN
-- For external URLs, add the domain to `next.config.js` → `images.remotePatterns`
-
-### Project Links
-
-Update each project's `url` field with the real URL to your live site or case study.
-
-## Build for Production
+## Scripts
 
 ```bash
-npm run build
-npm start
+npm run dev      # serveur de développement — http://localhost:3000
+npm run build    # build de production
+npm run start    # lance le build (après npm run build)
+npm run lint     # ESLint
 ```
 
-## Tech Stack
+## Déploiement
 
-- **Next.js 14** (App Router)
-- **React 18**
-- **Tailwind CSS**
-- **Framer Motion**
-- **TypeScript**
+Le projet est adapté à **Vercel** (ou tout hébergeur Node supportant Next.js). Définissez les mêmes variables d’environnement que en local dans le tableau de bord du projet, notamment `RESEND_API_KEY`.
 
-## License
+## Structure utile
 
-Private — for your personal use.
+```
+src/
+  app/              # pages et routes (App Router)
+  components/       # composants React
+  lib/              # constantes, données (site, productions, etc.)
+public/             # assets statiques (images, vidéos)
+```
+
+## Licence
+
+Le code source est publié sous la **licence MIT** — voir le fichier [`LICENSE`](LICENSE).
+
+Les contenus du site (textes, images, vidéos, identité « WebSite Studio ») restent la propriété de leur auteur sauf mention contraire.
