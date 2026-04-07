@@ -4,6 +4,8 @@ import Link from "next/link";
 import { Anton } from "next/font/google";
 import { motion, useReducedMotion } from "framer-motion";
 import { HeroCardsFan, FAN_DURATION, FAN_EASE } from "@/components/HeroCardsFan";
+import { HeroCardsMobileStack } from "@/components/HeroCardsMobileStack";
+import { DesktopOnly, MobileOnly } from "@/components/ResponsiveView";
 import { RotatingHeroWord } from "@/components/RotatingHeroWord";
 import { BRAND_VIOLET } from "@/lib/site";
 
@@ -27,7 +29,7 @@ export function LandingHome() {
   };
 
   return (
-    <section className="flex min-h-[calc(100vh-7rem)] flex-col bg-white pb-10 pt-2 sm:min-h-[calc(100vh-8rem)] sm:pb-14 sm:pt-4">
+    <section className="flex min-h-[calc(100vh-7rem)] w-full flex-1 flex-col items-stretch overflow-x-visible bg-white pb-10 pt-2 sm:min-h-[calc(100vh-8rem)] sm:pb-14 sm:pt-4">
       {/* Contenu hero : fondu synchronisé avec HeroCardsFan */}
       <motion.div
         className="relative z-20 mx-auto w-full max-w-4xl shrink-0 px-6 text-center"
@@ -62,12 +64,15 @@ export function LandingHome() {
         </div>
       </motion.div>
 
-      {/* Tiers inférieur : bloc cartes uniquement — ne remonte pas au centre */}
-      <div className="relative z-10 mt-auto flex w-full flex-col items-center justify-end px-4 pt-16 sm:px-8 sm:pt-20 md:pt-24">
-        <div className="w-full max-w-5xl overflow-visible pb-4">
+      {/* Desktop : éventail animé (inchangé). Mobile : pile verticale sans chevauchement avec le titre. */}
+      <MobileOnly className="relative z-10 mt-auto flex w-full justify-center pt-12">
+        <HeroCardsMobileStack />
+      </MobileOnly>
+      <DesktopOnly className="relative z-10 mt-auto flex w-full flex-col items-center justify-end self-stretch px-4 pt-16 sm:px-8 sm:pt-20 md:pt-24">
+        <div className="flex w-full justify-center overflow-x-visible overflow-y-visible pb-4">
           <HeroCardsFan />
         </div>
-      </div>
+      </DesktopOnly>
     </section>
   );
 }

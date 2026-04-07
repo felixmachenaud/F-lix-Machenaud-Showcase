@@ -4,9 +4,60 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
   min-height: 100vh;
+  min-height: 100dvh;
   background: #ffffff;
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
+/**
+ * Anneau intérieur du header (pages ≠ productions) : violet animé, sous coque blanche.
+ */
+.header-violet-inner {
+  background: linear-gradient(
+    125deg,
+    rgba(124, 58, 237, 0.22),
+    rgba(167, 139, 250, 0.42),
+    rgba(196, 181, 253, 0.35),
+    rgba(124, 58, 237, 0.28),
+    rgba(139, 92, 246, 0.38)
+  );
+  background-size: 280% 100%;
+  animation: header-violet-flow 9s ease-in-out infinite;
+  /* Lueur discrète — uniquement sur le cadre (le contenu reste à l’intérieur) */
+  box-shadow:
+    0 0 20px -6px rgba(124, 58, 237, 0.18),
+    0 0 40px -12px rgba(124, 58, 237, 0.12);
+}
+
+@keyframes header-violet-flow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+    box-shadow:
+      0 0 18px -8px rgba(124, 58, 237, 0.16),
+      0 0 36px -14px rgba(124, 58, 237, 0.1);
+  }
+  50% {
+    background-position: 100% 50%;
+    box-shadow:
+      0 0 26px -6px rgba(139, 92, 246, 0.26),
+      0 0 48px -10px rgba(124, 58, 237, 0.17);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header-violet-inner {
+    animation: none;
+    background-position: 40% 50%;
+    box-shadow: 0 0 20px -8px rgba(124, 58, 237, 0.14);
+  }
 }

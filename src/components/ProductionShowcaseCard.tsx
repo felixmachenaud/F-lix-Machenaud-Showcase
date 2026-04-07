@@ -35,10 +35,9 @@ export function ProductionShowcaseCard({ showcase }: Props) {
       {/* Cadre violet même format, derrière le bloc site — décalé pour laisser voir bordure gauche */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-0 rounded-[1.35rem] shadow-none"
+        className="pointer-events-none absolute inset-0 z-0 rounded-[1.35rem] shadow-none max-md:-translate-x-1.5 max-md:translate-y-1.5 md:-translate-x-2.5 md:translate-y-2.5"
         style={{
           backgroundColor: BRAND_VIOLET,
-          transform: "translate(-10px, 10px)",
         }}
       />
       <article className="relative z-10 flex h-full w-full flex-col overflow-hidden rounded-[1.35rem] border border-gray-200/90 bg-white shadow-[0_8px_32px_-14px_rgba(15,23,42,0.1),0_2px_10px_-4px_rgba(15,23,42,0.06)]">

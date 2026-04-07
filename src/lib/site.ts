@@ -6,6 +6,8 @@ export const CALENDLY_URL =
 export const LINKEDIN_URL =
   "https://www.linkedin.com/in/f%C3%A9lix-machenaud-8610bb231/";
 
+export const GITHUB_URL = "https://github.com/felixmachenaud";
+
 /** Violet boutons / accents (landing, services) */
 export const BRAND_VIOLET = "#7C3AED";
 

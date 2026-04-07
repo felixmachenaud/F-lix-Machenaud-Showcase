@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { BRAND_VIOLET, LINKEDIN_URL } from "@/lib/site";
+import { BRAND_VIOLET, GITHUB_URL, LINKEDIN_URL } from "@/lib/site";
 
 const block = {
   hidden: { opacity: 0, y: 20 },
@@ -12,6 +12,9 @@ const block = {
     transition: { delay: 0.06 * i, duration: 0.55, ease: [0.22, 1, 0.36, 1] as const },
   }),
 };
+
+const socialPill =
+  "inline-flex items-center gap-2 rounded-full border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 shadow-sm transition hover:border-gray-400 hover:shadow-md";
 
 export function AboutNarrative() {
   const reduceMotion = useReducedMotion();
@@ -53,9 +56,11 @@ export function AboutNarrative() {
         variants={block}
         className="mt-8 text-[15px] leading-[1.75] text-gray-900 sm:text-base md:text-[17px]"
       >
-        C&apos;est pour cela que j&apos;ai choisi d&apos;accompagner les entreprises et les
-        indépendants dans la création de sites web{" "}
-        <span className="font-medium text-gray-900">modernes, efficaces et visibles</span>.
+        J&apos;accompagne les entreprises et les indépendants qui veulent un site web à la hauteur
+        de leur activité :{" "}
+        <span className="font-medium text-gray-900">clair, professionnel, pensé pour convertir</span>{" "}
+        et pour être trouvé par vos clients. L&apos;objectif est simple : transformer votre message
+        en une expérience en ligne crédible et efficace.
       </motion.p>
 
       <motion.div
@@ -64,39 +69,33 @@ export function AboutNarrative() {
         className="mt-10 border-l-2 border-gray-900 pl-6"
       >
         <p className="text-[15px] leading-[1.75] sm:text-base md:text-[17px]">
-          Je m&apos;appelle <span className="font-semibold">Félix</span>, et je suis passionné par
-          le code et les usages du web, aussi bien pour les particuliers que pour les entreprises.
+          Mon travail repose sur une approche technique solide et une méthode de projet structurée :
+          cadrage des besoins, proposition claire des livrables, échanges réguliers et exécution
+          soignée. Les outils actuels — y compris l&apos;intelligence artificielle lorsque c&apos;est
+          pertinent — servent à{" "}
+          <span className="font-medium text-gray-900">
+            gagner en efficacité et en clarté, sans rogner sur la qualité ni sur le contrôle humain
+          </span>{" "}
+          sur votre contenu et votre image.
         </p>
         <p className="mt-5 text-[15px] leading-[1.75] sm:text-base md:text-[17px]">
-          Au fil de mes études et grâce aux nouvelles possibilités offertes par l&apos;intelligence
-          artificielle, j&apos;ai développé une approche{" "}
-          <span className="font-medium text-gray-900">rapide, structurée et orientée résultats</span>
-          .
+          Vous savez à quoi vous attendre : délais et périmètre sont explicités dès le départ, les
+          étapes sont visibles, et vous gardez la main sur les arbitrages importants. Cette
+          transparence fait partie du service — elle évite les mauvaises surprises et sécurise votre
+          investissement.
         </p>
       </motion.div>
 
       <motion.div custom={3} variants={block} className="mt-10">
         <p className="text-[15px] leading-[1.75] sm:text-base md:text-[17px]">
-          Mon objectif est simple : comprendre vos besoins, traduire vos idées sur un site clair et
-          professionnel, et vous livrer un résultat de qualité en quelques jours seulement{" "}
-          <span className="whitespace-nowrap rounded-full border border-gray-300 bg-gray-50 px-3 py-1 text-sm font-semibold text-gray-900">
-            en moyenne 6 jours
-          </span>
-          .
+          Chaque mission est traitée comme une collaboration : écoute, réactivité et exigence sur
+          le détail. Mon rôle est de vous livrer un site dont vous pouvez être fier, aligné sur vos
+          objectifs business et prêt à évoluer avec vous.
         </p>
       </motion.div>
 
-      <motion.p
-        custom={4}
-        variants={block}
-        className="mt-8 text-[15px] leading-[1.75] sm:text-base md:text-[17px]"
-      >
-        Chaque projet est pour moi une collaboration : j&apos;accorde une grande importance à
-        l&apos;écoute, à la réactivité et à la précision dans l&apos;exécution.
-      </motion.p>
-
       <motion.div
-        custom={5}
+        custom={4}
         variants={block}
         className="mt-12 rounded-2xl border border-gray-200/90 bg-white px-6 py-7 shadow-[0_2px_0_rgba(0,0,0,0.04),0_12px_32px_-8px_rgba(0,0,0,0.14),0_24px_48px_-16px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.95)] sm:px-8 sm:py-8"
       >
@@ -120,14 +119,22 @@ export function AboutNarrative() {
         </div>
       </motion.div>
 
-      <motion.div custom={6} variants={block} className="mt-10">
+      <motion.div custom={5} variants={block} className="mt-10 flex flex-wrap gap-3">
         <a
           href={LINKEDIN_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-full border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 shadow-sm transition hover:border-gray-400 hover:shadow-md"
+          className={socialPill}
         >
           LinkedIn — Félix Machenaud
+        </a>
+        <a
+          href={GITHUB_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={socialPill}
+        >
+          GitHub — felixmachenaud
         </a>
       </motion.div>
     </motion.div>

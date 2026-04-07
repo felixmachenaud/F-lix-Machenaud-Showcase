@@ -36,9 +36,10 @@ export const CARD_HEIGHT_PX = 200;
 export const CARD_RADIUS = "1.75rem";
 
 // ——— État initial (éventail resserré) ———
+/** Rotations et décalages symétriques pour un groupe visuellement centré */
 export const FAN_INITIAL = {
-  rotate: [-4, -1.2, 2.2] as const,
-  xPercent: [-2.8, 0, 2.8] as const,
+  rotate: [-3.5, -1, 3.5] as const,
+  xPercent: [-2.5, 0, 2.5] as const,
   /** Pas de translation verticale animée (évite le mouvement parasite) */
   yPx: [0, 0, 0] as const,
   scale: [0.96, 0.97, 0.98] as const,
@@ -46,8 +47,8 @@ export const FAN_INITIAL = {
 
 // ——— État final (éventail ouvert, référence) ———
 export const FAN_FINAL = {
-  rotate: [-9.5, -2.8, 7.2] as const,
-  xPercent: [-11, 0, 9.5] as const,
+  rotate: [-9, -2.5, 9] as const,
+  xPercent: [-10, 0, 10] as const,
   yPx: [0, 0, 0] as const,
   scale: [1, 1, 1] as const,
 };
@@ -67,13 +68,16 @@ export function HeroCardsFan() {
 
   return (
     <div
-      className="pointer-events-none relative mx-auto w-full select-none"
-      style={{
-        height: FAN_CONTAINER_HEIGHT_PX,
-        maxWidth: FAN_MAX_WIDTH_PX,
-      }}
+      className="pointer-events-none w-full shrink-0 overflow-x-visible overflow-y-visible select-none"
       aria-hidden
     >
+      <div
+        className="relative left-1/2 w-full max-w-[920px] -translate-x-1/2"
+        style={{
+          height: FAN_CONTAINER_HEIGHT_PX,
+          maxWidth: FAN_MAX_WIDTH_PX,
+        }}
+      >
       {LAYERS.map((layer, i) => {
         const initial = {
           rotate: FAN_INITIAL.rotate[i],
@@ -121,6 +125,7 @@ export function HeroCardsFan() {
           </div>
         );
       })}
+      </div>
     </div>
   );
 }

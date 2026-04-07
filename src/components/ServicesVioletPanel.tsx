@@ -2,28 +2,12 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import { ArrowCircleIcon } from "@/components/ArrowCircleIcon";
 import { productionSites } from "@/lib/productions";
 import { BRAND_VIOLET } from "@/lib/site";
 
 const SLIDE_EASE = [0.16, 1, 0.3, 1] as const;
 const SLIDE_DURATION_S = 0.85;
-
-function ArrowCircleIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      className="h-[15px] w-[15px] text-white"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.75"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <path d="M5 12h14M13 6l6 6-6 6" />
-    </svg>
-  );
-}
 
 /**
  * Demi-page droite : dégradé violet, ombre sur les contours, liens « Nos sites ».
@@ -76,7 +60,7 @@ export function ServicesVioletPanel() {
                     className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/40 bg-white/[0.08] text-white shadow-[0_2px_12px_-2px_rgba(0,0,0,0.15)] transition group-hover:border-white/55 group-hover:bg-white/[0.14]"
                     aria-hidden
                   >
-                    <ArrowCircleIcon />
+                    <ArrowCircleIcon className="h-[15px] w-[15px] text-white" />
                   </span>
                 </Link>
               </li>
