@@ -10,7 +10,7 @@ const footerLinkLabel =
 
 const footerItems = [
   { href: "/conditions-generales-vente", label: "Conditions générales de vente" },
-  { href: "/politique-confidentialite", label: "Politique de confidentialité" },
+  { href: "/confidentialite", label: "Politique de confidentialité" },
   { href: "/politique-cookies", label: "Politique relative aux cookies" },
 ] as const;
 

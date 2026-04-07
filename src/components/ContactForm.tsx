@@ -1,6 +1,7 @@
 "use client";
 
 import type { FormEvent } from "react";
+import Link from "next/link";
 import { useState } from "react";
 import { BRAND_VIOLET } from "@/lib/site";
 
@@ -20,12 +21,26 @@ export function ContactForm() {
     const name = String(fd.get("name") ?? "").trim();
     const email = String(fd.get("email") ?? "").trim();
     const message = String(fd.get("message") ?? "").trim();
+    const privacyAccepted = fd.get("privacy") === "on";
+
+    if (!privacyAccepted) {
+      setStatus("idle");
+      setErrorMessage(
+        "Veuillez accepter la politique de confidentialité pour envoyer votre message."
+      );
+      return;
+    }
 
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message }),
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+          privacyAccepted: true,
+        }),
       });
 
       const data = (await res.json().catch(() => ({}))) as {
@@ -128,6 +143,34 @@ export function ContactForm() {
               {errorMessage}
             </p>
           ) : null}
+
+          <div className="flex flex-col gap-3 border-t border-gray-100 pt-2">
+            <label className="flex cursor-pointer items-start gap-3 text-[14px] leading-snug text-gray-700 sm:text-[15px]">
+              <input
+                type="checkbox"
+                name="privacy"
+                required
+                disabled={status === "loading"}
+                className="mt-0.5 h-4 w-4 shrink-0 rounded border-gray-300 text-[#7C3AED] focus:ring-[#7C3AED]/30"
+              />
+              <span>
+                J&apos;ai lu et j&apos;accepte la{" "}
+                <Link
+                  href="/confidentialite"
+                  className="font-semibold text-gray-900 underline underline-offset-2 hover:text-gray-700"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  politique de confidentialité
+                </Link>{" "}
+                de ce site.
+              </span>
+            </label>
+            <p className="text-[13px] leading-relaxed text-gray-500 sm:text-sm">
+              Vos données sont transmises à notre prestataire Resend pour
+              l&apos;acheminement de l&apos;e-mail et ne seront pas revendues.
+            </p>
+          </div>
 
           <div className="pt-1">
             <button

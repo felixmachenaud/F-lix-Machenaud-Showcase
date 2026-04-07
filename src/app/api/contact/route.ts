@@ -40,9 +40,23 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Champs manquants." }, { status: 400 });
   }
 
-  const name = String((body as { name: unknown }).name ?? "").trim();
-  const email = String((body as { email: unknown }).email ?? "").trim();
-  const message = String((body as { message: unknown }).message ?? "").trim();
+  const raw = body as {
+    name: unknown;
+    email: unknown;
+    message: unknown;
+    privacyAccepted?: unknown;
+  };
+
+  if (raw.privacyAccepted !== true) {
+    return NextResponse.json(
+      { error: "L’acceptation de la politique de confidentialité est requise." },
+      { status: 400 }
+    );
+  }
+
+  const name = String(raw.name ?? "").trim();
+  const email = String(raw.email ?? "").trim();
+  const message = String(raw.message ?? "").trim();
 
   if (!name || name.length > MAX_NAME) {
     return NextResponse.json({ error: "Nom invalide." }, { status: 400 });
