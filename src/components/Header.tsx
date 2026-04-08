@@ -14,7 +14,6 @@ const contactBtn =
   "shrink-0 rounded-full bg-gray-900 px-3 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-gray-800 sm:px-4 sm:py-2.5 sm:text-sm";
 
 const navItems = [
-  { href: "/rendez-vous", label: "Prendre rendez-vous" },
   { href: "/a-propos", label: "À propos" },
   { href: "/productions", label: "Nos productions" },
   { href: "/pricing", label: "Tarifs" },

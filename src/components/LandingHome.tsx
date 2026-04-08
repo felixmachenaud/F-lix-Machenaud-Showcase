@@ -56,7 +56,7 @@ export function LandingHome() {
             Découvrir nos productions
           </Link>
           <Link
-            href="/contact"
+            href="/pourquoi-refaire-site-web"
             className="inline-flex min-w-[260px] items-center justify-center rounded-full border border-gray-200 bg-white px-10 py-4 text-base font-bold text-gray-900 shadow-sm transition hover:border-gray-300 hover:bg-gray-50 active:scale-[0.98] sm:min-w-[280px] sm:px-11 sm:py-4 sm:text-lg"
           >
             Pourquoi refaire votre site web

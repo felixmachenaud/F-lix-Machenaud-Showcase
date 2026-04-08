@@ -2,16 +2,17 @@ import Link from "next/link";
 import { ArrowCircleIcon } from "@/components/ArrowCircleIcon";
 import { BRAND_VIOLET } from "@/lib/site";
 
-const footerLinkRow =
-  "group flex w-full items-center justify-between gap-4 rounded-xl py-2.5 text-left transition hover:bg-white/50 sm:py-2.5 sm:justify-start sm:gap-4";
+/** Bouton footer « Prendre rendez-vous » : violet plein, survol blanc / texte violet */
+const rendezVousFooterBtn =
+  "inline-flex min-h-[3.2rem] w-full max-w-md items-center justify-center rounded-2xl border-2 border-[#7C3AED] bg-[#7C3AED] px-5 py-3 text-center text-sm font-bold text-white shadow-[0_4px_16px_-4px_rgba(124,58,237,0.45)] transition hover:bg-white hover:text-[#7C3AED] hover:shadow-[0_6px_20px_-6px_rgba(124,58,237,0.25)] active:scale-[0.98] sm:min-h-[3.45rem] sm:w-auto sm:min-w-[16.25rem] sm:px-6 sm:py-3.5 sm:text-base";
 
-const footerLinkLabel =
-  "min-w-0 flex-1 text-xs font-medium text-gray-700 transition group-hover:text-gray-900 sm:text-sm";
+const legalLinkClass =
+  "inline-flex min-w-0 max-w-full items-center justify-center gap-1 text-[10px] font-medium leading-tight text-gray-600 transition hover:text-gray-900 sm:gap-1.5 sm:text-[11px]";
 
-const footerItems = [
-  { href: "/conditions-generales-vente", label: "Conditions générales de vente" },
-  { href: "/confidentialite", label: "Politique de confidentialité" },
-  { href: "/politique-cookies", label: "Politique relative aux cookies" },
+const legalItems = [
+  { href: "/confidentialite", label: "Confidentialité" },
+  { href: "/conditions-generales-vente", label: "CGV" },
+  { href: "/politique-cookies", label: "Cookies" },
 ] as const;
 
 /**
@@ -24,33 +25,31 @@ export function Footer() {
         className="w-full max-w-7xl rounded-3xl border-2 bg-white/50 px-5 py-6 shadow-[0_16px_48px_-12px_rgba(124,58,237,0.22),0_8px_28px_-8px_rgba(124,58,237,0.14),inset_0_1px_0_rgba(255,255,255,0.75)] backdrop-blur-xl backdrop-saturate-150 sm:px-10 sm:py-8 supports-[backdrop-filter]:bg-white/42"
         style={{ borderColor: `${BRAND_VIOLET}99` }}
       >
-        <div className="flex flex-col gap-6 sm:gap-8">
-          <div className="flex flex-row flex-wrap items-center justify-between gap-x-4 gap-y-1">
+        <div className="flex flex-col gap-6 sm:gap-7">
+          <div className="flex flex-row flex-wrap items-center gap-x-4 gap-y-1">
             <p className="text-sm font-semibold text-gray-900 sm:text-base">
               WebSite Studio
             </p>
-            <p className="text-xs text-gray-500 sm:text-sm">© Tous droits réservés</p>
           </div>
 
+          {/* Ligne 1 : Prendre rendez-vous */}
+          <div className="flex justify-center">
+            <Link href="/rendez-vous" className={rendezVousFooterBtn}>
+              Prendre rendez-vous
+            </Link>
+          </div>
+
+          {/* Ligne 2 : liens légaux — texte discret + petite flèche violette */}
           <nav
-            className="flex flex-col border-t border-gray-200/70 pt-5 sm:pt-6"
+            className="border-t border-gray-200/70 pt-5 sm:pt-6"
             aria-label="Informations légales"
           >
-            <ul className="flex flex-col gap-0.5">
-              {footerItems.map((item) => (
-                <li key={item.href}>
-                  <Link href={item.href} className={footerLinkRow}>
-                    <span className={footerLinkLabel}>{item.label}</span>
-                    <span
-                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border bg-white/80 shadow-[0_2px_12px_-2px_rgba(124,58,237,0.2)] transition group-hover:border-[#7C3AED]/50 group-hover:bg-white/95"
-                      style={{
-                        borderColor: `${BRAND_VIOLET}55`,
-                        color: BRAND_VIOLET,
-                      }}
-                      aria-hidden
-                    >
-                      <ArrowCircleIcon className="h-[15px] w-[15px]" />
-                    </span>
+            <ul className="grid grid-cols-3 gap-x-2 gap-y-2 sm:gap-x-6">
+              {legalItems.map((item) => (
+                <li key={item.href} className="min-w-0 text-center">
+                  <Link href={item.href} className={legalLinkClass}>
+                    <span className="truncate">{item.label}</span>
+                    <ArrowCircleIcon className="h-2.5 w-2.5 shrink-0 text-[#7C3AED] sm:h-3 sm:w-3" />
                   </Link>
                 </li>
               ))}

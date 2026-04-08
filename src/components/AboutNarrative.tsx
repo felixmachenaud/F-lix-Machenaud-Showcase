@@ -45,10 +45,9 @@ export function AboutNarrative() {
             className="relative z-10"
             style={{ boxShadow: "inset 0 -0.35em 0 0 rgba(17, 24, 39, 0.12)" }}
           >
-            c&apos;est une nécessité
+            c&apos;est une nécessité.
           </span>
         </span>
-        .
       </motion.p>
 
       <motion.p
@@ -71,15 +70,15 @@ export function AboutNarrative() {
         <p className="text-[15px] leading-[1.75] sm:text-base md:text-[17px]">
           Mon travail repose sur une approche technique solide et une méthode de projet structurée :
           cadrage des besoins, proposition claire des livrables, échanges réguliers et exécution
-          soignée. Les outils actuels — y compris l&apos;intelligence artificielle lorsque c&apos;est
-          pertinent — servent à{" "}
+          soignée. Les outils actuels, avec l&apos;aide de l&apos;intelligence artificielle, me
+          permettent de{" "}
           <span className="font-medium text-gray-900">
             gagner en efficacité et en clarté, sans rogner sur la qualité ni sur le contrôle humain
-          </span>{" "}
-          sur votre contenu et votre image.
+            ainsi que sur le contenu et votre image.
+          </span>
         </p>
         <p className="mt-5 text-[15px] leading-[1.75] sm:text-base md:text-[17px]">
-          Vous savez à quoi vous attendre : délais et périmètre sont explicités dès le départ, les
+          Vous savez à quoi vous attendre : le périmètre du délai est donné dès le départ, les
           étapes sont visibles, et vous gardez la main sur les arbitrages importants. Cette
           transparence fait partie du service — elle évite les mauvaises surprises et sécurise votre
           investissement.
