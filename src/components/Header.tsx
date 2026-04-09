@@ -15,7 +15,7 @@ const contactBtn =
 
 const navItems = [
   { href: "/a-propos", label: "À propos" },
-  { href: "/productions", label: "Nos productions" },
+  { href: "/productions", label: "Mes réalisations" },
   { href: "/pricing", label: "Tarifs" },
 ] as const;
 

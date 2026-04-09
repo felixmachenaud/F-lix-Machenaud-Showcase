@@ -9,7 +9,7 @@ const PAGE_PATH = "/pourquoi-refaire-site-web";
 
 const title = "Pourquoi refaire votre site web ? — WebSite Studio";
 const description =
-  "Vitesse Next.js, SEO, design mobile-first, conversions, sécurité et coûts : pourquoi une refonte de site web est un levier pour votre entreprise, avec une approche performante et respectueuse du RGPD.";
+  "Site lent ou daté, visibilité sur Google, mobile, confiance des clients : pourquoi refaire votre site est un vrai levier pour votre activité, sans jargon et dans le respect du cadre données personnelles.";
 
 export const metadata: Metadata = {
   title,
@@ -77,9 +77,9 @@ export default function PourquoiRefaireSitePage() {
             Pourquoi refaire votre site web ?
           </h1>
           <p className="mt-5 max-w-2xl text-pretty text-[15px] leading-relaxed text-gray-600 sm:text-lg">
-            Aujourd&apos;hui, un site lent ou daté vous fait perdre des opportunités. Une refonte pensée pour la
-            performance (Next.js, hébergement adapté), le référencement et l&apos;expérience mobile répond aux
-            attentes des utilisateurs et des moteurs — sans cookies tiers ni surcharge inutile.
+            Aujourd&apos;hui, un site lent ou daté vous fait perdre des opportunités. Une refonte pensée pour
+            charger vite, être bien vu sur Google et offrir une lecture confortable sur téléphone répond à ce
+            que vos visiteurs attendent — sans pistage publicitaire ni gadgets inutiles à l&apos;écran.
           </p>
 
           <div className="mt-10">
@@ -93,8 +93,9 @@ export default function PourquoiRefaireSitePage() {
             <div className="max-w-md space-y-2">
               <p className="text-sm font-semibold text-violet-800">Performance mesurable</p>
               <p className="text-sm leading-relaxed text-gray-600">
-                Les Core Web Vitals (LCP, INP, CLS) traduisent la fluidité ressentie. Un site statique ou rendu avec
-                Next.js vise un bon score Lighthouse sans scripts de tracking superflus.
+                En clair : votre page s&apos;affiche-t-elle rapidement, réagit-elle au toucher sans à-coups, et
+                reste-t-elle stable à l&apos;écran ? Nous visons un site léger et soigné, sans outils de suivi
+                publicitaire qui ralentissent la navigation.
               </p>
             </div>
             <div
@@ -118,7 +119,7 @@ export default function PourquoiRefaireSitePage() {
                 />
                 <circle cx="112" cy="24" r="5" fill="currentColor" />
                 <text x="12" y="68" className="fill-gray-400 text-[9px] font-sans">
-                  LCP · INP · CLS
+                  Vitesse · Confort · Stabilité
                 </text>
               </svg>
             </div>
@@ -127,26 +128,27 @@ export default function PourquoiRefaireSitePage() {
 
         <section className="mx-auto max-w-3xl px-5 pb-6 pt-12 sm:px-6 sm:pt-14 lg:px-8" aria-labelledby="methode-title">
           <h2 id="methode-title" className="text-lg font-bold text-gray-900 sm:text-xl">
-            Une méthode alignée SEO, performance et RGPD minimaliste
+            Une méthode lisible : visibilité sur Google, site agréable, données personnelles au carré
           </h2>
           <ul className="mt-5 space-y-3 text-[15px] leading-relaxed text-gray-700 sm:text-base">
             <li>
-              <strong className="font-semibold text-gray-900">SEO technique :</strong> HTML5 sémantique, génération
-              statique (SSG) lorsque c&apos;est pertinent, métadonnées et données structurées (JSON-LD) pour aider
-              les moteurs à comprendre votre page.
+              <strong className="font-semibold text-gray-900">Être trouvé sur Google :</strong> titres et contenus
+              structurés, pages claires pour les visiteurs comme pour les moteurs, informations utiles affichées
+              proprement — sans vous noyer dans le vocabulaire technique.
             </li>
             <li>
-              <strong className="font-semibold text-gray-900">RGPD :</strong> pas de cookies tiers sur ce type de
-              vitrine — pas de bandeau cookies inutile. La transparence repose sur la{" "}
+              <strong className="font-semibold text-gray-900">Données personnelles :</strong> sur une vitrine comme
+              celle-ci, pas de traceurs publicitaires imposés — pas de bandeau cookies superflu. La transparence
+              repose sur la{" "}
               <Link href="/confidentialite" className="font-medium text-violet-700 underline decoration-violet-300 underline-offset-2 hover:text-violet-900">
                 politique de confidentialité
               </Link>{" "}
-              et les mentions sous le formulaire de contact (détail des sous-traitants dans la même politique).
+              et les courts textes sous le formulaire de contact (prestataires indiqués dans cette même page).
             </li>
             <li>
-              <strong className="font-semibold text-gray-900">Performance :</strong> pas de JavaScript de confort
-              inutile ; polices en WOFF2, images au format moderne lorsqu&apos;elles sont présentes, objectif
-              d&apos;expérience légère et rapide.
+              <strong className="font-semibold text-gray-900">Confort à l&apos;usage :</strong> on évite les
+              surcharges inutiles ; images et textes sont préparés pour charger vite et rester nets sur écran et
+              mobile.
             </li>
           </ul>
         </section>
@@ -170,9 +172,9 @@ export default function PourquoiRefaireSitePage() {
               </Link>
               <Link
                 href="/rendez-vous"
-                className="inline-flex min-w-[220px] items-center justify-center rounded-full border border-gray-200 bg-white px-8 py-3.5 text-sm font-bold text-gray-900 shadow-sm transition hover:border-gray-300 hover:bg-gray-50 active:scale-[0.98] sm:text-base"
+                className="inline-flex min-w-[220px] items-center justify-center rounded-full border border-gray-200 bg-white px-5 py-3.5 text-center text-sm font-bold leading-snug text-gray-900 shadow-sm transition hover:border-gray-300 hover:bg-gray-50 active:scale-[0.98] sm:min-w-[240px] sm:px-7 sm:text-[15px]"
               >
-                Prendre rendez-vous
+                Vous préférez en parler de vive voix&nbsp;?
               </Link>
             </div>
           </div>

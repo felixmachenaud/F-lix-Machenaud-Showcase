@@ -111,9 +111,9 @@ export function AboutNarrative() {
           </Link>
           <Link
             href="/rendez-vous"
-            className="inline-flex items-center justify-center rounded-full border border-gray-300 bg-white px-6 py-2.5 text-sm font-semibold text-gray-900 shadow-sm transition hover:border-gray-400 hover:bg-gray-50"
+            className="inline-flex max-w-full items-center justify-center rounded-full border border-gray-300 bg-white px-5 py-2.5 text-center text-sm font-semibold leading-snug text-gray-900 shadow-sm transition hover:border-gray-400 hover:bg-gray-50 sm:px-6"
           >
-            Prendre rendez-vous
+            Vous préférez en parler de vive voix&nbsp;?
           </Link>
         </div>
       </motion.div>

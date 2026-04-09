@@ -33,9 +33,12 @@ const plans = [
     name: "Pro",
     badge: "Le plus choisi",
     description: "Notre offre phare : plus de pages, plus d’impact, idéal pour convaincre et convertir.",
-    price: 1390,
+    price: 1790,
     features: [
       "Tout le pack Basique",
+      "Formulaire de contact sécurisé",
+      "Hébergement & nom de domaine (selon offre)",
+      "Mise en ligne et formation courte",
       "Jusqu’à 10 sections / pages",
       "Animations & micro-interactions",
       "Optimisation SEO de base",

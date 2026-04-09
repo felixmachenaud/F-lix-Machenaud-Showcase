@@ -7,7 +7,6 @@ import { HeroCardsFan, FAN_DURATION, FAN_EASE } from "@/components/HeroCardsFan"
 import { HeroCardsMobileStack } from "@/components/HeroCardsMobileStack";
 import { DesktopOnly, MobileOnly } from "@/components/ResponsiveView";
 import { RotatingHeroWord } from "@/components/RotatingHeroWord";
-import { BRAND_VIOLET } from "@/lib/site";
 
 /** Style proche d’Impact : condensé, percutant, lisible partout (Google Fonts). */
 const heroImpact = Anton({
@@ -49,17 +48,16 @@ export function LandingHome() {
 
         <div className="mt-14 flex flex-col items-center justify-center gap-4 sm:mt-16 sm:flex-row sm:gap-5">
           <Link
-            href="/productions"
-            className="inline-flex min-w-[260px] items-center justify-center rounded-full px-10 py-4 text-base font-bold text-white shadow-md transition hover:brightness-110 hover:shadow-lg active:scale-[0.98] sm:min-w-[280px] sm:px-11 sm:py-4 sm:text-lg"
-            style={{ backgroundColor: BRAND_VIOLET }}
-          >
-            Découvrir nos productions
-          </Link>
-          <Link
             href="/pourquoi-refaire-site-web"
-            className="inline-flex min-w-[260px] items-center justify-center rounded-full border border-gray-200 bg-white px-10 py-4 text-base font-bold text-gray-900 shadow-sm transition hover:border-gray-300 hover:bg-gray-50 active:scale-[0.98] sm:min-w-[280px] sm:px-11 sm:py-4 sm:text-lg"
+            className="inline-flex min-w-[260px] items-center justify-center rounded-full border-2 border-[#7C3AED] bg-[#7C3AED] px-10 py-4 text-center text-base font-bold text-white shadow-md transition hover:bg-white hover:text-[#7C3AED] hover:shadow-lg active:scale-[0.98] sm:min-w-[280px] sm:px-11 sm:py-4 sm:text-lg"
           >
             Pourquoi refaire votre site web
+          </Link>
+          <Link
+            href="/productions"
+            className="inline-flex min-w-[260px] items-center justify-center rounded-full border border-gray-200 bg-white px-10 py-4 text-base font-bold text-gray-900 shadow-sm transition hover:border-gray-300 hover:bg-gray-50 active:scale-[0.98] sm:min-w-[280px] sm:px-11 sm:py-4 sm:text-lg"
+          >
+            Découvrir mes réalisations
           </Link>
         </div>
       </motion.div>
