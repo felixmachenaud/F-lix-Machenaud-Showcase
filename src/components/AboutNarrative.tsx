@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { BRAND_VIOLET, GITHUB_URL, LINKEDIN_URL } from "@/lib/site";
+import { BRAND_VIOLET, LINKEDIN_URL } from "@/lib/site";
 
 const block = {
   hidden: { opacity: 0, y: 20 },
@@ -113,7 +113,7 @@ export function AboutNarrative() {
             href="/rendez-vous"
             className="inline-flex max-w-full items-center justify-center rounded-full border border-gray-300 bg-white px-5 py-2.5 text-center text-sm font-semibold leading-snug text-gray-900 shadow-sm transition hover:border-gray-400 hover:bg-gray-50 sm:px-6"
           >
-            Vous préférez en parler de vive voix&nbsp;?
+            Et si on se prenait un café&nbsp;?
           </Link>
         </div>
       </motion.div>
@@ -126,14 +126,6 @@ export function AboutNarrative() {
           className={socialPill}
         >
           LinkedIn — Félix Machenaud
-        </a>
-        <a
-          href={GITHUB_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={socialPill}
-        >
-          GitHub — felixmachenaud
         </a>
       </motion.div>
     </motion.div>
