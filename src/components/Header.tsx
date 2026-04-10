@@ -13,11 +13,24 @@ const navLinkMobile =
 const contactBtn =
   "shrink-0 rounded-full bg-gray-900 px-3 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-gray-800 sm:px-4 sm:py-2.5 sm:text-sm";
 
+const AVIS_HREF = "/#avis" as const;
+
 const navItems = [
   { href: "/a-propos", label: "À propos" },
   { href: "/productions", label: "Mes réalisations" },
   { href: "/pricing", label: "Tarifs" },
+  { href: AVIS_HREF, label: "Avis" },
 ] as const;
+
+function scrollToAvisSection() {
+  const el = document.getElementById("avis");
+  if (!el) return;
+  const reduce =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
+  window.history.replaceState(null, "", AVIS_HREF);
+}
 
 function MenuIcon({ open }: { open: boolean }) {
   return (
@@ -86,7 +99,19 @@ export function Header() {
         aria-label="Navigation principale"
       >
         {navItems.map((item) => (
-          <Link key={item.href} href={item.href} className={navLink}>
+          <Link
+            key={item.href}
+            href={item.href}
+            className={navLink}
+            onClick={
+              item.href === AVIS_HREF && pathname === "/"
+                ? (e) => {
+                    e.preventDefault();
+                    scrollToAvisSection();
+                  }
+                : undefined
+            }
+          >
             {item.label}
           </Link>
         ))}
@@ -164,7 +189,13 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 className={navLinkMobile}
-                onClick={() => setMenuOpen(false)}
+                onClick={(e) => {
+                  if (item.href === AVIS_HREF && pathname === "/") {
+                    e.preventDefault();
+                    scrollToAvisSection();
+                  }
+                  setMenuOpen(false);
+                }}
               >
                 {item.label}
               </Link>

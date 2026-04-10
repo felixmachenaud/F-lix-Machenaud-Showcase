@@ -3,10 +3,12 @@
 import Link from "next/link";
 import { Anton } from "next/font/google";
 import { motion, useReducedMotion } from "framer-motion";
+import { useEffect } from "react";
 import { HeroCardsFan, FAN_DURATION, FAN_EASE } from "@/components/HeroCardsFan";
 import { HeroCardsMobileStack } from "@/components/HeroCardsMobileStack";
 import { DesktopOnly, MobileOnly } from "@/components/ResponsiveView";
 import { RotatingHeroWord } from "@/components/RotatingHeroWord";
+import { TestimonialsShowcase } from "@/components/TestimonialsShowcase";
 
 /** Style proche d’Impact : condensé, percutant, lisible partout (Google Fonts). */
 const heroImpact = Anton({
@@ -16,6 +18,17 @@ const heroImpact = Anton({
 
 export function LandingHome() {
   const reduceMotion = useReducedMotion();
+
+  /** Arrivée sur `/#avis` (lien depuis une autre page ou URL directe) : centrer la section */
+  useEffect(() => {
+    if (typeof window === "undefined" || window.location.hash !== "#avis") return;
+    const el = document.getElementById("avis");
+    if (!el) return;
+    const instant = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    requestAnimationFrame(() => {
+      el.scrollIntoView({ behavior: instant ? "auto" : "smooth", block: "center" });
+    });
+  }, []);
 
   /** Même durée et courbe que l’éventail — texte part de transparent et apparaît en parallèle */
   const heroReveal = {
@@ -28,6 +41,7 @@ export function LandingHome() {
   };
 
   return (
+    <>
     <section className="flex min-h-[calc(100vh-7rem)] w-full flex-1 flex-col items-stretch overflow-x-visible bg-white pb-10 pt-2 sm:min-h-[calc(100vh-8rem)] sm:pb-14 sm:pt-4">
       {/* Contenu hero : fondu synchronisé avec HeroCardsFan */}
       <motion.div
@@ -72,5 +86,14 @@ export function LandingHome() {
         </div>
       </DesktopOnly>
     </section>
+
+    <section
+      id="avis"
+      className="scroll-mt-28 border-t border-gray-100 bg-white px-4 py-14 sm:scroll-mt-32 sm:px-8 sm:py-20"
+      aria-labelledby="temoignages-heading"
+    >
+      <TestimonialsShowcase />
+    </section>
+    </>
   );
 }
