@@ -3,7 +3,7 @@ import { PricingPlans } from "@/components/PricingPlans";
 export const metadata = {
   title: "Tarifs — WebSite Studio",
   description:
-    "Choisissez l’offre Basique, Pro ou Sur mesure. Tarifs fixes clairement indiqués.",
+    "Site sur mesure à partir de 990€. Échangeons sur votre projet et vos références d’inspiration.",
 };
 
 export default function PricingPage() {

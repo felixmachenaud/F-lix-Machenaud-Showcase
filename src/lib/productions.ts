@@ -8,7 +8,7 @@ export type ProductionSite = {
   href: string;
 };
 
-/** Carte « écran + infos » sur /productions */
+/** Carte « visuel + infos » sur /productions */
 export type ProductionShowcase = ProductionSite & {
   /** Phrase d’accroche : partie avant l’italique */
   headlineLead: string;
@@ -19,31 +19,11 @@ export type ProductionShowcase = ProductionSite & {
   /** Paragraphe descriptif sous le titre */
   description: string;
   stats: { value: string; label: string }[];
-  /** Chemin public vers une vidéo MP4 (ex. /videos/conciergerie.mp4), optionnel */
-  videoSrc?: string | null;
-  /** Image d’attente avant lecture (optionnel) */
-  videoPoster?: string | null;
+  /** Photo d’aperçu au-dessus du texte (fichier dans /public) */
+  imageSrc: string;
 };
 
 export const productionShowcases: ProductionShowcase[] = [
-  {
-    id: "conciergerie",
-    name: "Conciergerie pratique",
-    href: "https://web-demo-eight-delta.vercel.app",
-    headlineLead: "Une vitrine web ",
-    headlineItalic: "moderne et rassurante",
-    headlineTail:
-      " pour présenter votre conciergerie et accompagner les voyageurs du premier clic à la réservation.",
-    description:
-      "Parcours fluide, informations essentielles mises en avant et appels à l’action visibles : le site met en valeur votre activité et facilite la prise de contact.",
-    stats: [
-      { value: "2024", label: "Mise en ligne" },
-      { value: "100%", label: "Mobile first" },
-      { value: "24/7", label: "Présence web" },
-    ],
-    videoSrc: "/videos/conciergerie.mp4",
-    videoPoster: null,
-  },
   {
     id: "hautefeuille",
     name: "Lycée Hautefeuille",
@@ -59,8 +39,7 @@ export const productionShowcases: ProductionShowcase[] = [
       { value: "2", label: "Sites collège & lycée" },
       { value: "100%", label: "Accessibilité visée" },
     ],
-    videoSrc: "/videos/hautefeuille.mp4",
-    videoPoster: null,
+    imageSrc: "/images/presentation1.jpeg",
   },
 ];
 
