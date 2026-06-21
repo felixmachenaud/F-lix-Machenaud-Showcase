@@ -21,6 +21,8 @@ export type ProductionShowcase = ProductionSite & {
   stats: { value: string; label: string }[];
   /** Photo d’aperçu au-dessus du texte (fichier dans /public) */
   imageSrc: string;
+  /** Couleur de profondeur du cadre */
+  accentColor?: string;
 };
 
 export const productionShowcases: ProductionShowcase[] = [
@@ -40,6 +42,60 @@ export const productionShowcases: ProductionShowcase[] = [
       { value: "100%", label: "Accessibilité visée" },
     ],
     imageSrc: "/images/presentation1.jpeg",
+  },
+  {
+    id: "welkeys",
+    name: "Welkeys",
+    href: "https://www.welkeys.com",
+    headlineLead: "Un site de ",
+    headlineItalic: "conciergerie pensé conversion",
+    headlineTail:
+      " pour mieux mettre en avant les biens, renforcer le SEO et clarifier l’architecture globale du parcours.",
+    description:
+      "Présentation des logements, hiérarchie des contenus et points de contact travaillés pour soutenir la visibilité organique et transformer plus efficacement les visiteurs en demandes qualifiées.",
+    stats: [
+      { value: "SEO", label: "Visibilité" },
+      { value: "Biens", label: "Mise en avant" },
+      { value: "CTA", label: "Conversion" },
+    ],
+    imageSrc: "/images/presentation2.jpeg",
+    accentColor: "#f97316",
+  },
+  {
+    id: "eigenflow",
+    name: "Eigenflow",
+    href: "https://www.eigenflow.fr/fr#testimonials",
+    headlineLead: "Un site ",
+    headlineItalic: "clair et orienté preuve",
+    headlineTail:
+      " pour présenter l’offre, structurer le discours et mettre en avant les témoignages clients.",
+    description:
+      "Mise en avant des retours clients, hiérarchie des contenus et parcours lisible : une vitrine pensée pour renforcer la confiance et soutenir la conversion.",
+    stats: [
+      { value: "Témoignages", label: "Preuve sociale" },
+      { value: "Offre", label: "Clarté" },
+      { value: "CTA", label: "Conversion" },
+    ],
+    imageSrc: "/images/presentation3.jpeg",
+    accentColor: "#7dd3fc",
+  },
+  {
+    id: "lechappee",
+    name: "L’Échappée",
+    href: "https://lechappee-mockup.vercel.app/#manifesto",
+    headlineLead: "Un site ",
+    headlineItalic: "innovant et immersif",
+    headlineTail:
+      " qui permet de découvrir les assiettes en 3D directement depuis son smartphone.",
+    description:
+      "Une vitrine centrée sur l’image et le décor, où la scénographie des plats et l’ambiance du lieu prennent toute la place pour faire vivre l’expérience avant même la visite.",
+    stats: [
+      { value: "3D", label: "Assiettes interactives" },
+      { value: "Mobile", label: "Découverte smartphone" },
+      { value: "Décor", label: "Mise en scène" },
+    ],
+    imageSrc: "/images/presentation4.jpeg",
+    accentColor: "#facc15",
   },
 ];
 

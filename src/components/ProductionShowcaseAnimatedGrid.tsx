@@ -15,7 +15,7 @@ const slideUp = {
 
 export function ProductionShowcaseAnimatedGrid({ showcases }: Props) {
   return (
-    <div className="mx-auto mt-10 w-full max-w-5xl overflow-visible pl-2.5 sm:pl-3 md:mt-12">
+    <div className="mx-auto mt-10 flex w-full max-w-5xl flex-col gap-12 overflow-visible pl-2.5 sm:gap-14 sm:pl-3 md:mt-12">
       {showcases.map((showcase, i) => (
         <motion.div
           key={showcase.id}
