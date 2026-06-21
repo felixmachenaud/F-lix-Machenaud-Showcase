@@ -21,8 +21,8 @@ const TESTIMONIALS: TestimonialItem[] = [
     id: "marthe",
     quote:
       "J'avais un peu d'appréhension au départ en confiant la refonte de notre site à quelqu'un de plus jeune, et franchement, c'est moi qui avais tort. Dès le premier échange, j'ai été surprise par le sérieux et la clarté avec laquelle tout a été cadré. Il a pris le temps de vraiment comprendre ce qu'on voulait véhiculer, a posé les bonnes questions, et a proposé des directions visuelles auxquelles on n'aurait pas pensé nous-mêmes. Ce qui m'a aussi marquée, c'est la rigueur tout au long du projet : les délais ont été respectés, les retours intégrés rapidement, et on sentait qu'il était investi dans le résultat autant que nous. Quelqu'un d'attentionné, disponible, et qui fait clairement ce métier avec passion. Je recommande sans hésiter.",
-    firstName: "Marthe",
-    role: "Psychologue",
+    firstName: "Sophie",
+    role: "Concierge",
     border: "#7C3AED",
     tint: "124, 58, 237",
   },
@@ -31,7 +31,7 @@ const TESTIMONIALS: TestimonialItem[] = [
     quote:
       "Je ne connaissais rien au design et j'avais peur de ne pas savoir expliquer ce que je voulais. Il a su décrypter mes idées floues et en faire quelque chose de cohérent et professionnel. Le rendu est au-delà de ce que j'espérais, et tout ça dans des délais vraiment courts. Le contact est simple, direct, agréable, on se sent entre de bonnes mains même quand on n'est pas expert.",
     firstName: "Thomas",
-    role: "Architecte",
+    role: "Entrepreneur",
     border: "#DB2777",
     tint: "219, 39, 119",
   },
@@ -39,8 +39,8 @@ const TESTIMONIALS: TestimonialItem[] = [
     id: "sophie",
     quote:
       "Super expérience du début à la fin. Ce qui m'a vraiment plu c'est son côté méthodique, on sait toujours où on en est, rien n'est laissé au hasard. Et malgré ça, il y a quelque chose de chaleureux dans les échanges qui rend le projet vraiment agréable à mener. Le résultat est propre, moderne, et mes clients l'ont immédiatement remarqué. Encore merci !",
-    firstName: "Sophie",
-    role: "Start Up Ecommerce",
+    firstName: "Abyane",
+    role: "Consultant IA",
     border: "#A855F7",
     tint: "168, 85, 247",
   },
