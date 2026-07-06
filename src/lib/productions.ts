@@ -27,6 +27,24 @@ export type ProductionShowcase = ProductionSite & {
 
 export const productionShowcases: ProductionShowcase[] = [
   {
+    id: "walt-community",
+    name: "Walt Community",
+    href: "https://walt-community-poc.vercel.app",
+    headlineLead: "Une application ",
+    headlineItalic: "de suivi mentorat",
+    headlineTail:
+      " pour l’association Walt : inscription des alternants et mentors, espaces dédiés et tableau de bord admin pour piloter l’accompagnement.",
+    description:
+      "Plateforme Next.js connectée à Supabase, conçue pour gérer jusqu’à 30 000 profils en base. Parcours séparés mentoré / mentor / équipe Walt, relations mentor ↔ mentoré, suivi des RDV et pastilles d’état — le tout synchronisé en temps réel côté serveur.",
+    stats: [
+      { value: "30k", label: "Profils en base" },
+      { value: "Supabase", label: "Base temps réel" },
+      { value: "3", label: "Espaces utilisateurs" },
+    ],
+    imageSrc: "/walt_picture.jpeg",
+    accentColor: "#1a2350",
+  },
+  {
     id: "hautefeuille",
     name: "Lycée Hautefeuille",
     href: "https://web-site-htf.vercel.app",
