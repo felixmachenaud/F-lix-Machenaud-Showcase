@@ -10,6 +10,7 @@ export type ProductionSite = {
 
 /** Carte « visuel + infos » sur /productions */
 export type ProductionShowcase = ProductionSite & {
+  category: "vitrine" | "application";
   /** Phrase d’accroche : partie avant l’italique */
   headlineLead: string;
   /** Mise en avant (serif italique) */
@@ -25,29 +26,31 @@ export type ProductionShowcase = ProductionSite & {
   accentColor?: string;
 };
 
-export const productionShowcases: ProductionShowcase[] = [
+export const vitrineShowcases: ProductionShowcase[] = [
   {
-    id: "walt-community",
-    name: "Walt Community",
-    href: "https://walt-community-poc.vercel.app",
-    headlineLead: "Une application ",
-    headlineItalic: "de suivi mentorat",
+    id: "komplices",
+    name: "Komplices",
+    href: "https://mockup-komplice.vercel.app/",
+    category: "vitrine",
+    headlineLead: "Un site ",
+    headlineItalic: "orienté réservation",
     headlineTail:
-      " pour l’association Walt : inscription des alternants et mentors, espaces dédiés et tableau de bord admin pour piloter l’accompagnement.",
+      " pour le restaurant Komplices : parcours simplifié pour les clients et gestion allégée pour l’équipe.",
     description:
-      "Plateforme Next.js connectée à Supabase, conçue pour gérer jusqu’à 30 000 profils en base. Parcours séparés mentoré / mentor / équipe Walt, relations mentor ↔ mentoré, suivi des RDV et pastilles d’état — le tout synchronisé en temps réel côté serveur.",
+      "+70 % de réservations en ligne. Formulaire de réservation épuré, créneaux synchronisés en temps réel et confirmations automatiques par e-mail — moins de charge pour la salle, plus de tables remplies.",
     stats: [
-      { value: "30k", label: "Profils en base" },
-      { value: "Supabase", label: "Base temps réel" },
-      { value: "3", label: "Espaces utilisateurs" },
+      { value: "+70 %", label: "Réservations en ligne" },
+      { value: "Temps réel", label: "Créneaux" },
+      { value: "Auto", label: "Confirmations e-mail" },
     ],
-    imageSrc: "/walt_picture.jpeg",
-    accentColor: "#1a2350",
+    imageSrc: "/images/komplices.jpeg",
+    accentColor: "#FF1493",
   },
   {
     id: "hautefeuille",
     name: "Lycée Hautefeuille",
     href: "https://web-site-htf.vercel.app",
+    category: "vitrine",
     headlineLead: "Un site ",
     headlineItalic: "institutionnel et lisible",
     headlineTail:
@@ -65,6 +68,7 @@ export const productionShowcases: ProductionShowcase[] = [
     id: "welkeys",
     name: "Welkeys",
     href: "https://www.welkeys.com",
+    category: "vitrine",
     headlineLead: "Un site de ",
     headlineItalic: "conciergerie pensé conversion",
     headlineTail:
@@ -83,6 +87,7 @@ export const productionShowcases: ProductionShowcase[] = [
     id: "eigenflow",
     name: "Eigenflow",
     href: "https://www.eigenflow.fr/fr#testimonials",
+    category: "vitrine",
     headlineLead: "Un site ",
     headlineItalic: "clair et orienté preuve",
     headlineTail:
@@ -101,6 +106,7 @@ export const productionShowcases: ProductionShowcase[] = [
     id: "lechappee",
     name: "L’Échappée",
     href: "https://lechappee-mockup.vercel.app/#manifesto",
+    category: "vitrine",
     headlineLead: "Un site ",
     headlineItalic: "innovant et immersif",
     headlineTail:
@@ -115,6 +121,52 @@ export const productionShowcases: ProductionShowcase[] = [
     imageSrc: "/images/presentation4.jpeg",
     accentColor: "#facc15",
   },
+];
+
+export const applicationShowcases: ProductionShowcase[] = [
+  {
+    id: "conciergerie-carcassonne",
+    name: "Conciergerie Carcassonne",
+    href: "https://mockup-la-bastite-carcassonne.vercel.app/",
+    category: "application",
+    headlineLead: "Une refonte ",
+    headlineItalic: "orientée conversion et trafic",
+    headlineTail:
+      " pour Conciergerie Carcassonne : visibilité directe renforcée et moindre dépendance aux plateformes tierces.",
+    description:
+      "+25 % de trafic organique, baisse des réservations via Booking et Airbnb au profit du canal direct. Intégration native du gestionnaire Beds24, panel admin dédié et pilotage des performances en temps réel.",
+    stats: [
+      { value: "+25 %", label: "Trafic" },
+      { value: "Beds24", label: "Réservations natives" },
+      { value: "Admin", label: "Pilotage perf." },
+    ],
+    imageSrc: "/images/carcassonne.jpeg",
+    accentColor: "#C2410C",
+  },
+  {
+    id: "walt-community",
+    name: "Walt Community",
+    href: "https://walt-community-poc.vercel.app",
+    category: "application",
+    headlineLead: "Une application ",
+    headlineItalic: "de suivi mentorat",
+    headlineTail:
+      " pour l’association Walt : inscription des alternants et mentors, espaces dédiés et tableau de bord admin pour piloter l’accompagnement.",
+    description:
+      "Plateforme Next.js connectée à Supabase, conçue pour gérer jusqu’à 30 000 profils en base. Parcours séparés mentoré / mentor / équipe Walt, relations mentor ↔ mentoré, suivi des RDV et pastilles d’état — le tout synchronisé en temps réel côté serveur.",
+    stats: [
+      { value: "30k", label: "Profils en base" },
+      { value: "Supabase", label: "Base temps réel" },
+      { value: "3", label: "Espaces utilisateurs" },
+    ],
+    imageSrc: "/walt_picture.jpeg",
+    accentColor: "#1a2350",
+  },
+];
+
+export const productionShowcases: ProductionShowcase[] = [
+  ...vitrineShowcases,
+  ...applicationShowcases,
 ];
 
 export const productionSites: ProductionSite[] = productionShowcases.map(

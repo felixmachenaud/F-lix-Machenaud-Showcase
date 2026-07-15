@@ -16,7 +16,7 @@ export function PageBackground() {
   const style =
     pathname === "/pricing"
       ? pricingLayoutBackgroundStyle
-      : pathname === "/productions"
+      : pathname.startsWith("/productions")
         ? productionsLayoutBackgroundStyle
         : { backgroundColor: "#ffffff" };
 

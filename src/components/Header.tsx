@@ -56,7 +56,8 @@ function MenuIcon({ open }: { open: boolean }) {
 
 export function Header() {
   const pathname = usePathname();
-  const isGradientPage = pathname === "/productions" || pathname === "/pricing";
+  const isGradientPage =
+    pathname.startsWith("/productions") || pathname === "/pricing";
   const [menuOpen, setMenuOpen] = useState(false);
   const panelId = useId();
 
