@@ -61,3 +61,39 @@ body {
     box-shadow: 0 0 20px -8px rgba(124, 58, 237, 0.14);
   }
 }
+
+/**
+ * Halo nuageux au centre du hero — même principe que Gemini, en violet léger.
+ */
+.hero-cloud {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: min(1320px, 118vw);
+  height: min(820px, 92vh);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 48% 42% at 46% 45%, rgba(167, 139, 250, 0.48) 0%, transparent 70%),
+    radial-gradient(ellipse 44% 38% at 56% 54%, rgba(196, 181, 253, 0.4) 0%, transparent 72%),
+    radial-gradient(ellipse 76% 64% at 50% 50%, rgba(237, 233, 254, 0.82) 0%, rgba(245, 243, 255, 0.38) 48%, transparent 70%);
+  filter: blur(40px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-cloud {
+    filter: blur(24px);
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-cloud {
+    width: min(280px, 72vw);
+    height: min(340px, 42vh);
+    filter: blur(22px);
+    background:
+      radial-gradient(ellipse 50% 44% at 48% 46%, rgba(167, 139, 250, 0.4) 0%, transparent 70%),
+      radial-gradient(ellipse 78% 68% at 50% 50%, rgba(237, 233, 254, 0.75) 0%, rgba(245, 243, 255, 0.3) 48%, transparent 72%);
+  }
+}
