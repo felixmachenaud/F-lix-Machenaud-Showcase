@@ -1,0 +1,272 @@
+/* ==========================================================================
+   Shiny buttons — adapted from the "shiny CTA" component to the site palette.
+   A conic highlight orbits the border, a dotted field and an inner shimmer
+   follow it, and on hover the highlight widens and speeds up.
+   Every .btn and .round-btn uses it; variants only change the colour tokens.
+   ========================================================================== */
+
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@property --gradient-angle-offset {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@property --gradient-percent {
+  syntax: "<percentage>";
+  initial-value: 5%;
+  inherits: false;
+}
+@property --gradient-shine {
+  syntax: "<color>";
+  initial-value: white;
+  inherits: false;
+}
+
+.btn,
+.round-btn {
+  /* Default = deep brand violet (used by Contact and dark CTAs). */
+  --sb-bg: #22145a;
+  --sb-bg-subtle: #33217a;
+  --sb-fg: #ffffff;
+  --sb-hl: #8b6bf5;
+  --sb-hl-subtle: #c9b8ff;
+  --sb-dot: #ffffff;
+  --sb-shimmer: 0.55;
+  --sb-glow: rgba(139, 107, 245, 0.55);
+  --duration: 3s;
+  --sb-transition: 800ms cubic-bezier(0.25, 1, 0.5, 1);
+
+  isolation: isolate;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: var(--sb-fg);
+  background:
+    linear-gradient(var(--sb-bg), var(--sb-bg)) padding-box,
+    conic-gradient(
+        from calc(var(--gradient-angle) - var(--gradient-angle-offset)),
+        transparent,
+        var(--sb-hl) var(--gradient-percent),
+        var(--gradient-shine) calc(var(--gradient-percent) * 2),
+        var(--sb-hl) calc(var(--gradient-percent) * 3),
+        transparent calc(var(--gradient-percent) * 4)
+      )
+      border-box;
+  box-shadow:
+    inset 0 0 0 1px var(--sb-bg-subtle),
+    0 12px 30px -16px var(--sb-glow);
+  transition:
+    --gradient-angle-offset var(--sb-transition),
+    --gradient-percent var(--sb-transition),
+    --gradient-shine var(--sb-transition),
+    box-shadow var(--sb-transition),
+    transform 0.35s var(--ease),
+    translate 0.35s var(--ease);
+}
+
+.btn::before,
+.btn::after,
+.round-btn::before,
+.round-btn::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset-inline-start: 50%;
+  inset-block-start: 50%;
+  translate: -50% -50%;
+  z-index: -1;
+}
+
+/* Dotted field that follows the orbiting highlight */
+.btn::before,
+.round-btn::before {
+  --size: calc(100% - 6px);
+  --position: 2px;
+  --space: calc(var(--position) * 2);
+  width: var(--size);
+  height: var(--size);
+  background: radial-gradient(circle at var(--position) var(--position), var(--sb-dot) calc(var(--position) / 4), transparent 0) padding-box;
+  background-size: var(--space) var(--space);
+  background-repeat: space;
+  mask-image: conic-gradient(from calc(var(--gradient-angle) + 45deg), black, transparent 10% 90%, black);
+  border-radius: inherit;
+  opacity: 0.4;
+}
+
+/* Inner shimmer */
+.btn::after,
+.round-btn::after {
+  width: 100%;
+  aspect-ratio: 1;
+  background: linear-gradient(-50deg, transparent, var(--sb-hl), transparent);
+  mask-image: radial-gradient(circle at bottom, transparent 40%, black);
+  opacity: var(--sb-shimmer);
+}
+
+.btn,
+.btn::before,
+.round-btn,
+.round-btn::before {
+  animation:
+    sb-angle var(--duration) linear infinite,
+    sb-angle calc(var(--duration) / 0.4) linear infinite reverse paused;
+  animation-composition: add;
+}
+.btn::after,
+.round-btn::after {
+  animation:
+    sb-shimmer var(--duration) linear infinite,
+    sb-shimmer calc(var(--duration) / 0.4) linear infinite reverse paused;
+  animation-composition: add;
+}
+
+.btn:is(:hover, :focus-visible),
+.round-btn:is(:hover, :focus-visible) {
+  --gradient-percent: 20%;
+  --gradient-angle-offset: 95deg;
+  --gradient-shine: var(--sb-hl-subtle);
+  box-shadow:
+    inset 0 0 0 1px var(--sb-bg-subtle),
+    inset 0 -1ex 2rem 2px color-mix(in srgb, var(--sb-hl) 45%, transparent),
+    0 18px 40px -16px var(--sb-glow);
+}
+.btn:is(:hover, :focus-visible),
+.btn:is(:hover, :focus-visible)::before,
+.btn:is(:hover, :focus-visible)::after,
+.round-btn:is(:hover, :focus-visible),
+.round-btn:is(:hover, :focus-visible)::before,
+.round-btn:is(:hover, :focus-visible)::after {
+  animation-play-state: running;
+}
+.btn:active,
+.round-btn:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+@keyframes sb-angle {
+  to {
+    --gradient-angle: 360deg;
+  }
+}
+@keyframes sb-shimmer {
+  to {
+    rotate: 360deg;
+  }
+}
+
+/* ---------- Variants ---------- */
+
+/* Main call to action: bright brand violet */
+.btn-primary {
+  --sb-bg: #6d45f0;
+  --sb-bg-subtle: #7f5bf6;
+  --sb-hl: #c9b8ff;
+  --sb-hl-subtle: #ffffff;
+  --sb-glow: rgba(109, 69, 240, 0.75);
+  --sb-shimmer: 0.45;
+}
+
+/* Secondary: light surface, violet highlight */
+.btn-ghost,
+.round-btn {
+  --sb-bg: #ffffff;
+  --sb-bg-subtle: rgba(109, 69, 240, 0.14);
+  --sb-fg: var(--ink);
+  --sb-hl: #6d45f0;
+  --sb-hl-subtle: #b9a6ff;
+  --sb-dot: #6d45f0;
+  --sb-shimmer: 0.18;
+  --sb-glow: rgba(109, 69, 240, 0.3);
+}
+
+/* On coloured or dark surfaces */
+.about-cta .btn-primary,
+.p-dark .btn.p-btn {
+  --sb-bg: #ffffff;
+  --sb-bg-subtle: rgba(255, 255, 255, 0.6);
+  --sb-fg: var(--violet);
+  --sb-hl: #a88bff;
+  --sb-hl-subtle: #6d45f0;
+  --sb-dot: #6d45f0;
+  --sb-shimmer: 0.25;
+  --sb-glow: rgba(20, 10, 60, 0.55);
+}
+/* Opaque fills only: a translucent fill would reveal the orbiting border gradient underneath. */
+.p-vivid .btn.p-btn {
+  --sb-bg: #ffffff;
+  --sb-bg-subtle: rgba(255, 255, 255, 0.7);
+  --sb-fg: #a43fd0;
+  --sb-hl: #f08ac0;
+  --sb-hl-subtle: #b65cf2;
+  --sb-dot: #b65cf2;
+  --sb-shimmer: 0.25;
+  --sb-glow: rgba(120, 20, 90, 0.45);
+}
+.about-cta .btn-ghost {
+  --sb-bg: #22145a;
+  --sb-bg-subtle: #33217a;
+  --sb-fg: #ffffff;
+  --sb-hl: #e4dbff;
+  --sb-hl-subtle: #ffffff;
+  --sb-dot: #ffffff;
+  --sb-glow: rgba(20, 10, 60, 0.5);
+}
+.p-light .btn.p-btn {
+  --sb-bg: #22145a;
+  --sb-bg-subtle: #33217a;
+  --sb-fg: #fff;
+  --sb-hl: #7f8cff;
+  --sb-hl-subtle: #c9cfff;
+  --sb-glow: rgba(84, 101, 255, 0.55);
+}
+
+/* Round arrow buttons keep their size; the mobile menu toggle joins the family. */
+.round-btn {
+  display: inline-grid;
+  place-items: center;
+  padding: 0;
+}
+.menu-btn {
+  background: linear-gradient(#fff, #fff) padding-box, conic-gradient(from 0deg, #6d45f0, #b65cf2, #5465ff, #6d45f0) border-box;
+  border: 1.5px solid transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .btn::before,
+  .btn::after,
+  .round-btn,
+  .round-btn::before,
+  .round-btn::after {
+    animation: none;
+  }
+}
+
+/* ---------- Navigation buttons ---------- */
+.site-nav {
+  max-width: 980px;
+}
+.nav-links {
+  gap: 8px;
+}
+.nav-links a.btn-nav {
+  padding: 10px 17px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--sb-fg);
+}
+.nav-links a.btn-nav.btn-ghost {
+  --sb-bg: rgba(255, 255, 255, 0.92);
+  --sb-shimmer: 0.12;
+  --sb-glow: rgba(109, 69, 240, 0.18);
+}
+.nav-links a.btn-nav[aria-current="page"] {
+  color: #fff;
+  font-weight: 600;
+}

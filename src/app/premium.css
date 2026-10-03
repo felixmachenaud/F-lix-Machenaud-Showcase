@@ -1,0 +1,239 @@
+/* ==========================================================================
+   Premium layer: warmer paper instead of pure white, a fine film grain,
+   saturated colour bands and small material details.
+   ========================================================================== */
+
+:root {
+  --paper: #f4f0fb;
+  --paper-2: #ece6f8;
+  --deep: #1d1240;
+  --deep-2: #2b1a63;
+}
+
+body {
+  background: var(--paper);
+}
+
+/* Film grain over the whole page — barely visible, but it removes the "flat screen" feel. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.25 0 0 0 0 0.15 0 0 0 0 0.45 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Surfaces ---------- */
+.page-top {
+  background:
+    radial-gradient(ellipse 70% 60% at 50% -10%, #e2d8ff 0%, transparent 60%),
+    linear-gradient(180deg, #efe8ff 0%, var(--paper) 55%);
+}
+.card,
+.plan,
+.contact-form,
+.project-detail {
+  border-color: rgba(76, 52, 160, 0.1);
+}
+.card {
+  background: rgba(255, 255, 255, 0.82);
+}
+.site-nav {
+  background: rgba(250, 248, 255, 0.72);
+  border-color: rgba(109, 69, 240, 0.12);
+}
+.site-header.is-scrolled .site-nav {
+  background: rgba(250, 248, 255, 0.88);
+}
+
+/* Shimmer on the serif accent of every big title. */
+.h-display .serif,
+.hero-title .serif,
+.footer-big .serif {
+  background: linear-gradient(100deg, var(--violet) 0%, var(--orchid) 25%, var(--violet) 50%, var(--indigo) 75%, var(--violet) 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 7s linear infinite;
+}
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* ---------- Hero ---------- */
+.hero-sticky {
+  background:
+    radial-gradient(ellipse 38% 34% at 28% 40%, rgba(84, 101, 255, 0.16), transparent 70%),
+    radial-gradient(ellipse 38% 34% at 72% 62%, rgba(182, 92, 242, 0.16), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 50% 50%, #e9e0ff 0%, #f1ecfd 45%, var(--paper) 85%);
+}
+/* Fine construction grid, fading out from the centre. */
+.hero-sticky::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(109, 69, 240, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(109, 69, 240, 0.07) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(ellipse 55% 50% at 50% 50%, #000 10%, transparent 75%);
+  mask-image: radial-gradient(ellipse 55% 50% at 50% 50%, #000 10%, transparent 75%);
+  pointer-events: none;
+}
+.ring-tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.35), transparent 40%);
+  pointer-events: none;
+}
+
+/* ---------- Colour band: marquee ---------- */
+.marquee {
+  border: 0;
+  padding: 40px 0;
+  background:
+    radial-gradient(ellipse 50% 120% at 20% 50%, rgba(84, 101, 255, 0.55), transparent 70%),
+    radial-gradient(ellipse 50% 120% at 80% 50%, rgba(182, 92, 242, 0.5), transparent 70%),
+    linear-gradient(100deg, #3b2bb8, var(--violet) 50%, #8f3fd6);
+}
+.marquee-track {
+  color: #fff;
+}
+.marquee-track .serif {
+  color: #d9ccff;
+}
+.marquee-track i {
+  background: none;
+  color: rgba(255, 255, 255, 0.55);
+  -webkit-text-fill-color: currentColor;
+}
+
+/* ---------- Stats ---------- */
+.stats {
+  background: linear-gradient(180deg, var(--paper), #fbf9ff 60%, var(--paper));
+}
+.stat {
+  background: linear-gradient(170deg, var(--t), rgba(255, 255, 255, 0.9) 70%);
+  border-color: color-mix(in srgb, var(--c) 18%, transparent);
+}
+
+/* ---------- Testimonials ---------- */
+.home-avis {
+  background:
+    radial-gradient(ellipse 45% 50% at 15% 55%, rgba(217, 80, 143, 0.14), transparent 70%),
+    radial-gradient(ellipse 45% 50% at 85% 45%, rgba(109, 69, 240, 0.16), transparent 70%),
+    linear-gradient(180deg, var(--paper), #efe7fb 50%, var(--paper));
+}
+
+/* ---------- Projects: a coloured stage that follows the active project ---------- */
+.showcase {
+  position: relative;
+}
+.showcase .cs-stage {
+  margin: 48px 24px 0;
+  border-radius: 40px;
+  background:
+    radial-gradient(ellipse 60% 70% at 50% 110%, color-mix(in srgb, var(--c) 45%, transparent), transparent 70%),
+    linear-gradient(160deg, color-mix(in srgb, var(--c) 22%, #fff), color-mix(in srgb, var(--c) 10%, var(--paper)));
+  border: 1px solid color-mix(in srgb, var(--c) 20%, transparent);
+  transition: background 0.8s var(--ease);
+}
+.showcase .cs-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--c) 12%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--c) 12%, transparent) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 40%, #000 70%, transparent);
+  mask-image: linear-gradient(180deg, transparent, #000 40%, #000 70%, transparent);
+  pointer-events: none;
+}
+.cs-nav {
+  margin-top: 24px;
+}
+.tools {
+  background: linear-gradient(180deg, var(--paper), #ede6fb);
+}
+
+/* ---------- Pricing ---------- */
+.pricing {
+  background:
+    radial-gradient(ellipse 60% 40% at 50% 0%, #ddd1ff 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 0% 70%, rgba(84, 101, 255, 0.12), transparent 70%),
+    radial-gradient(ellipse 40% 40% at 100% 70%, rgba(217, 80, 143, 0.12), transparent 70%),
+    linear-gradient(180deg, #efe8ff, var(--paper) 60%);
+}
+
+/* ---------- About ---------- */
+.pillar {
+  background: linear-gradient(180deg, var(--t), rgba(255, 255, 255, 0.85) 60%);
+}
+
+/* ---------- Footer ---------- */
+.footer-night {
+  background:
+    radial-gradient(ellipse 50% 60% at 100% 0%, rgba(217, 80, 143, 0.16), transparent 70%),
+    radial-gradient(ellipse 50% 70% at 0% 100%, rgba(84, 101, 255, 0.18), transparent 70%),
+    linear-gradient(160deg, #ece4ff, #f5f1ff 50%, #ebe2ff);
+  border-color: rgba(109, 69, 240, 0.12);
+}
+
+@media (max-width: 760px) {
+  .showcase .cs-stage {
+    margin: 36px 12px 0;
+    border-radius: 28px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .h-display .serif,
+  .hero-title .serif,
+  .footer-big .serif {
+    animation: none;
+  }
+}
+
+/* ---------- Phones & tablets ---------- */
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+.footer-big {
+  font-size: clamp(40px, 12.5vw, 168px);
+}
+.site-header {
+  top: max(16px, env(safe-area-inset-top));
+}
+.site-footer {
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+}
+@media (max-width: 1100px) and (min-width: 861px) {
+  .nav-links a.btn-nav {
+    padding: 9px 13px;
+    font-size: 13px;
+  }
+  .site-nav {
+    padding-left: 16px;
+  }
+}
+@media (max-width: 520px) {
+  .h-display {
+    font-size: clamp(38px, 11vw, 76px);
+  }
+  .footer-night {
+    padding: 64px 0 24px;
+  }
+  .footer-row nav {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+}
