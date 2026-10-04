@@ -6,9 +6,9 @@ export default function NotFound() {
       <div>
         <p className="big">404</p>
         <h1 className="h-section">
-          Cette page s&apos;est perdue <span className="serif">dans l&apos;infini.</span>
+          Oups, j&apos;ai dû oublier <span className="serif">de coder cette page.</span>
         </h1>
-        <p>Elle a peut-être été déplacée, ou l&apos;adresse contient une faute de frappe.</p>
+        <p>Promis, ça ne m&apos;arrive jamais sur les sites de mes clients. — Félix</p>
         <Link href="/" className="btn btn-primary">
           Revenir à l&apos;accueil <span className="arrow">→</span>
         </Link>

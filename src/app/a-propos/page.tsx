@@ -41,9 +41,9 @@ export default function AboutPage() {
       <div className="wrap">
         <div className="about-hero">
           <div>
-            <RevealTitle as="h1" className="h-display" text="À propos de [[WebSite Studio]]" immediate />
+            <RevealTitle as="h1" className="h-display" text="Moi, c'est [[Félix.]]" immediate />
             <FadeIn as="p" className="lead" delay={0.35}>
-              Une approche humaine, technique et orientée résultats.
+              Je crée des sites web sur mesure, seul, de A à Z. Vous parlez directement à la personne qui conçoit et code votre site.
             </FadeIn>
             <FadeIn delay={0.5} className="about-hero-ctas">
               <Link href="/contact" className="btn btn-primary">
@@ -58,7 +58,7 @@ export default function AboutPage() {
             <TiltCard max={5}>
               <ParallaxReveal className="portrait">
                 <Image
-                  src="/images/portrait.jpeg"
+                  src="/images/portrait.webp"
                   alt="Portrait de Félix Machenaud"
                   fill
                   priority

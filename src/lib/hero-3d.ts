@@ -1,4 +1,4 @@
-// Generated from felixtech3d/render_web.py (tube_path.json), in pixels of construisons-linfini-3d.png.
+// Generated from felixtech3d/render_web.py (tube_path.json), in pixels of construisons-linfini-3d.webp.
 export const HERO_3D = {
   width: 1605,
   height: 650,

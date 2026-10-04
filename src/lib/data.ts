@@ -49,7 +49,7 @@ export const projects: Record<Category, Project[]> = {
       accent: "#6D45F0",
       name: "Les Komplices",
       kind: "Restaurant",
-      image: "/images/projets/komplices.jpeg",
+      image: "/images/projets/komplices.webp",
       href: "https://mockup-komplice.vercel.app/",
       headline:
         "Un site [[orienté réservation]] pour le restaurant Komplices : parcours simplifié pour les clients et gestion allégée pour l’équipe.",
@@ -65,7 +65,7 @@ export const projects: Record<Category, Project[]> = {
       accent: "#5465FF",
       name: "Hautefeuille",
       kind: "Établissement scolaire",
-      image: "/images/projets/hautefeuille.jpeg",
+      image: "/images/projets/hautefeuille.webp",
       href: "https://web-site-htf.vercel.app/",
       headline:
         "Un site [[institutionnel et lisible]] pour informer les familles, structurer l’information collège / lycée et valoriser la vie de l’établissement.",
@@ -81,7 +81,7 @@ export const projects: Record<Category, Project[]> = {
       accent: "#B65CF2",
       name: "Welkeys",
       kind: "Conciergerie",
-      image: "/images/projets/villas.jpeg",
+      image: "/images/projets/villas.webp",
       href: "https://www.welkeys.com/",
       headline:
         "Un site de conciergerie [[pensé conversion]] pour mieux mettre en avant les biens, renforcer le SEO et clarifier l’architecture globale du parcours.",
@@ -97,7 +97,7 @@ export const projects: Record<Category, Project[]> = {
       accent: "#EC6FB0",
       name: "Eigenflow",
       kind: "Conseil en IA",
-      image: "/images/projets/consultant.jpeg",
+      image: "/images/projets/consultant.webp",
       href: "https://www.eigenflow.fr/fr#testimonials",
       headline:
         "Un site clair et [[orienté preuve]] pour présenter l’offre, structurer le discours et mettre en avant les témoignages clients.",
@@ -113,7 +113,7 @@ export const projects: Record<Category, Project[]> = {
       accent: "#8B6BF5",
       name: "L’Échappée",
       kind: "Restaurant",
-      image: "/images/projets/restaurant-3d.jpeg",
+      image: "/images/projets/restaurant-3d.webp",
       href: "https://lechappee-mockup.vercel.app/#manifesto",
       headline:
         "Un site [[innovant et immersif]] qui permet de découvrir les assiettes en 3D directement depuis son smartphone.",
@@ -131,7 +131,7 @@ export const projects: Record<Category, Project[]> = {
       accent: "#5465FF",
       name: "Conciergerie Carcassonne",
       kind: "Application",
-      image: "/images/projets/carcassonne.jpeg",
+      image: "/images/projets/carcassonne.webp",
       href: "https://mockup-la-bastite-carcassonne.vercel.app/",
       headline:
         "Une refonte [[orientée conversion et trafic]] pour Conciergerie Carcassonne : visibilité directe renforcée et moindre dépendance aux plateformes tierces.",
@@ -147,7 +147,7 @@ export const projects: Record<Category, Project[]> = {
       accent: "#B65CF2",
       name: "Walt",
       kind: "Application de mentorat",
-      image: "/images/projets/walt.jpeg",
+      image: "/images/projets/walt.webp",
       href: "https://walt-community-poc.vercel.app/",
       headline:
         "Une application de [[suivi mentorat]] pour l’association Walt : inscription des alternants et mentors, espaces dédiés et tableau de bord admin pour piloter l’accompagnement.",
@@ -250,8 +250,8 @@ export const plans: Plan[] = [
 
 export const tools = [
   { name: "Google Agenda", src: null },
-  { name: "Gmail", src: "/images/outils/gmail.png" },
-  { name: "Google Meet", src: "/images/outils/meet.png" },
-  { name: "Microsoft Teams", src: "/images/outils/teams.png" },
-  { name: "Claude", src: "/images/outils/claude.png" },
+  { name: "Gmail", src: "/images/outils/gmail.webp" },
+  { name: "Google Meet", src: "/images/outils/meet.webp" },
+  { name: "Microsoft Teams", src: "/images/outils/teams.webp" },
+  { name: "Claude", src: "/images/outils/claude.webp" },
 ];

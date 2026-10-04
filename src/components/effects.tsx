@@ -4,15 +4,11 @@ import { useEffect, useRef, type ReactNode } from "react";
 import {
   animate,
   motion,
-  useAnimationFrame,
   useInView,
-  useMotionValue,
   useReducedMotion,
   useScroll,
   useSpring,
   useTransform,
-  useVelocity,
-  wrap,
 } from "motion/react";
 import { INFINITY_PATH } from "./infinity";
 
@@ -82,9 +78,8 @@ export function Counter({ value, className }: { value: string; className?: strin
   const reduce = useReducedMotion();
   useEffect(() => {
     const match = value.match(/^([^\d]*)([\d\s]+)(.*)$/);
-    if (!match || !inView || !ref.current) return;
+    if (!match || !inView || !ref.current || reduce) return;
     const target = Number(match[2].replace(/\s/g, ""));
-    if (reduce) return;
     const node = ref.current;
     const controls = animate(0, target, {
       duration: 1.8,
@@ -103,28 +98,9 @@ export function Counter({ value, className }: { value: string; className?: strin
   );
 }
 
-/** A band of words that drifts sideways and speeds up / skews with scroll velocity. */
-export function VelocityMarquee({ items, baseVelocity = -2.2 }: { items: string[]; baseVelocity?: number }) {
-  const reduce = useReducedMotion();
-  const x = useMotionValue(0);
-  const { scrollY } = useScroll();
-  const velocity = useVelocity(scrollY);
-  const smooth = useSpring(velocity, { damping: 50, stiffness: 400 });
-  const factor = useTransform(smooth, [-1500, 0, 1500], [-4, 0, 4], { clamp: false });
-  const skew = useTransform(smooth, [-2000, 0, 2000], [8, 0, -8]);
-  const direction = useRef(1);
-
-  useAnimationFrame((_, delta) => {
-    if (reduce) return;
-    let move = direction.current * baseVelocity * (delta / 1000);
-    const f = factor.get();
-    if (f < 0) direction.current = -1;
-    else if (f > 0) direction.current = 1;
-    move += direction.current * move * f;
-    x.set(x.get() + move);
-  });
-
-  const translate = useTransform(x, (v) => `${wrap(-25, -50, v)}%`);
+/** A static band of words (kept calm: one animation per page).
+ */
+export function VelocityMarquee({ items }: { items: string[]; baseVelocity?: number }) {
   const row = items.flatMap((t, i) => [
     <span key={`t${i}`} className={i % 2 ? "serif" : undefined}>
       {t}
@@ -135,41 +111,21 @@ export function VelocityMarquee({ items, baseVelocity = -2.2 }: { items: string[
   ]);
 
   return (
-    <div className="marquee" aria-label={items.join(", ")}>
-      <motion.div className="marquee-track" style={{ x: translate, skewX: skew }} aria-hidden="true">
+    <div className="marquee" role="marquee" aria-label={items.join(", ")}>
+      <div className="marquee-track" style={{ transform: "translateX(-25%)" }} aria-hidden="true">
         {row}
         {row}
         {row}
         {row}
-      </motion.div>
+      </div>
     </div>
   );
 }
 
 /** Card that tilts in 3D toward the pointer. */
 export function TiltCard({ children, className, max = 6 }: { children: ReactNode; className?: string; max?: number }) {
-  const reduce = useReducedMotion();
-  const rx = useSpring(0, { stiffness: 200, damping: 20 });
-  const ry = useSpring(0, { stiffness: 200, damping: 20 });
-
-  return (
-    <motion.div
-      className={className}
-      style={{ rotateX: rx, rotateY: ry, transformPerspective: 900 }}
-      onPointerMove={(e) => {
-        if (reduce || e.pointerType !== "mouse") return;
-        const r = e.currentTarget.getBoundingClientRect();
-        ry.set(((e.clientX - r.left) / r.width - 0.5) * max * 2);
-        rx.set(-((e.clientY - r.top) / r.height - 0.5) * max * 2);
-      }}
-      onPointerLeave={() => {
-        rx.set(0);
-        ry.set(0);
-      }}
-    >
-      {children}
-    </motion.div>
-  );
+  void max;
+  return <div className={className}>{children}</div>;
 }
 
 /** Paragraph whose words light up one after another as it scrolls through the viewport. */
@@ -207,22 +163,7 @@ function Word({
 
 /** Image that slides slower than the page (parallax) and is revealed by an expanding mask. */
 export function ParallaxReveal({ children, className }: { children: ReactNode; className?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-
-  return (
-    <motion.div
-      ref={ref}
-      className={className}
-      initial={{ clipPath: "inset(18% 18% 18% 18% round 40px)" }}
-      animate={inView ? { clipPath: "inset(0% 0% 0% 0% round 32px)" } : undefined}
-      transition={{ duration: 1.3, ease: [0.22, 1, 0.36, 1] }}
-    >
-      <motion.div style={{ y, height: "116%", marginTop: "-8%", position: "relative" }}>{children}</motion.div>
-    </motion.div>
-  );
+  return <div className={className}>{children}</div>;
 }
 
 /** Large infinity line that draws itself when it scrolls into view. */
@@ -235,7 +176,7 @@ export function InfinityDraw({ className }: { className?: string }) {
         stroke="url(#inf-grad)"
         strokeWidth="1.5"
         strokeLinecap="round"
-        initial={{ pathLength: 0 }}
+        initial={{ pathLength: 1 }}
         whileInView={{ pathLength: 1 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 2.6, ease: [0.65, 0, 0.35, 1] }}

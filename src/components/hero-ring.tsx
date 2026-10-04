@@ -143,14 +143,11 @@ export function HeroRing() {
           <h1 className="sr-only">Construisons l&apos;infini.</h1>
           <motion.div
             className="hero-3d"
-            style={{ rotateX: tiltX, rotateY: tiltY, transformPerspective: 1000 }}
-            initial={{ opacity: 0, y: 24, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="hero-3d-float">
               <Image
-                src="/images/construisons-linfini-3d.png"
+                src="/images/construisons-linfini-3d.webp"
                 alt=""
                 width={HERO_3D.width}
                 height={HERO_3D.height}

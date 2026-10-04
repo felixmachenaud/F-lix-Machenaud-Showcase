@@ -23,7 +23,7 @@ export default function Home() {
         <div className="wrap">
           <div className="stats-head">
             <RevealTitle className="h-section" text="Des résultats [[qui se mesurent]]" />
-            <FadeIn as="p">Chaque projet est pensé pour un objectif concret : plus de réservations, plus de visibilité, moins de dépendance.</FadeIn>
+            <FadeIn as="p">Quelques chiffres de projets récents, mesurés avec mes clients.</FadeIn>
           </div>
           <div className="stats-grid">
             {stats.map((s, i) => (

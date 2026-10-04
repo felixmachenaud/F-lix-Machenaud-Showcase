@@ -33,11 +33,11 @@ function signedOffset(i: number, active: number, len: number) {
 
 /** Hook returning a card size that fits the viewport (the original component used fixed pixels). */
 function useCardSize() {
-  const [size, setSize] = React.useState({ w: 540, h: 330 });
+  const [size, setSize] = React.useState({ w: 760, h: 464, ready: false });
   React.useEffect(() => {
     const update = () => {
-      const w = Math.min(540, window.innerWidth - 64);
-      setSize({ w, h: Math.round(w * 0.61) });
+      const w = Math.min(window.innerWidth >= 1024 ? 760 : 620, window.innerWidth - 40);
+      setSize({ w, h: Math.round(w * 0.61), ready: true });
     };
     update();
     window.addEventListener("resize", update);
@@ -55,7 +55,7 @@ export function CardStack<T extends CardStackItem>({
   overlap = 0.46,
 }: CardStackProps<T>) {
   const reduceMotion = useReducedMotion();
-  const { w, h } = useCardSize();
+  const { w, h, ready } = useCardSize();
   const len = items.length;
   const maxOffset = Math.floor(maxVisible / 2);
   const spacing = Math.round(w * (1 - overlap));
@@ -66,7 +66,7 @@ export function CardStack<T extends CardStackItem>({
   return (
     <div
       className="cs-stage"
-      style={{ height: h + 110 }}
+      style={{ height: "calc(min(var(--cs-max), 100vw - 40px) * 0.61 + 130px)", opacity: ready ? 1 : 0 }}
       tabIndex={0}
       role="region"
       aria-roledescription="carrousel"
@@ -115,7 +115,7 @@ export function CardStack<T extends CardStackItem>({
                   src={item.imageSrc}
                   alt={item.title}
                   fill
-                  sizes="(max-width: 700px) 90vw, 540px"
+                  sizes="(max-width: 800px) 92vw, 760px"
                   draggable={false}
                   priority={isActive}
                   style={{ objectFit: "cover", objectPosition: "top" }}

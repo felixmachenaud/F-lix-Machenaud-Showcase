@@ -1037,7 +1037,7 @@ html[data-intro="1"] .intro {
 }
 
 .brand-logo {
-  width: 30px;
+  width: auto;
   height: 30px;
   filter: drop-shadow(0 4px 8px rgba(109, 69, 240, 0.35));
   transition: transform 0.5s var(--ease);

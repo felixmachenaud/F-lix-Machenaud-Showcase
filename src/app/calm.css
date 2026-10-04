@@ -1,0 +1,123 @@
+/* ==========================================================================
+   Calm layer — one animation per page, no page loaders.
+   Looping decorations are frozen; buttons only react on hover.
+   ========================================================================== */
+
+.aurora span,
+.footer-big .serif,
+.hero-3d-float,
+.scroll-hint i,
+.plan.featured::after,
+.portrait-wrap::before,
+.btn,
+.btn::before,
+.btn::after,
+.round-btn,
+.round-btn::before,
+.round-btn::after {
+  animation: none !important;
+}
+
+/* Buttons: static highlight at rest, a single smooth sweep on hover */
+.btn,
+.round-btn {
+  --gradient-angle: 210deg;
+}
+.btn:is(:hover, :focus-visible),
+.round-btn:is(:hover, :focus-visible) {
+  --gradient-angle-offset: 120deg;
+}
+.btn::before,
+.round-btn::before {
+  opacity: 0;
+}
+
+/* Portrait: the photo as is, no violet wash */
+.portrait,
+.portrait > div {
+  background: #ecebf0 !important;
+}
+.portrait img {
+  mix-blend-mode: normal !important;
+}
+
+/* ---------- Simple & human: fewer layers, softer shadows ---------- */
+body::after,
+.hero-sticky::before,
+.aurora,
+.portrait-wrap::before {
+  display: none !important;
+}
+:root {
+  --e2: 0 1px 2px rgba(30, 16, 70, 0.05), 0 10px 30px -18px rgba(40, 20, 100, 0.18);
+  --e3: 0 1px 2px rgba(30, 16, 70, 0.05), 0 18px 40px -20px rgba(40, 20, 100, 0.24);
+  --shadow: var(--e2);
+}
+.card::after,
+.pillar::after,
+.reason::after,
+.project-detail::after {
+  display: none;
+}
+.card,
+.pillar,
+.reason,
+.project-detail,
+.contact-form,
+.rdv-side {
+  background-image: none;
+  background-color: #fff;
+}
+.h-display .serif,
+.h-section .serif {
+  background: none !important;
+  -webkit-text-fill-color: currentColor;
+  color: var(--violet);
+}
+.hero-3d img {
+  filter: none;
+}
+.stat {
+  background: #fff !important;
+  border-color: var(--hairline) !important;
+}
+.stat > span,
+.stat b {
+  background: none !important;
+  -webkit-text-fill-color: currentColor !important;
+  color: var(--ink) !important;
+}
+.tst-avatar {
+  background: var(--violet) !important;
+  box-shadow: none !important;
+}
+
+/* Bigger tap area on the testimonial dots (24px min) without changing their look */
+.tst-dots button {
+  position: relative;
+}
+.tst-dots button::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+}
+
+.cs-stage {
+  --cs-max: 620px;
+}
+@media (min-width: 1024px) {
+  .cs-stage {
+    --cs-max: 760px;
+  }
+}
+.dots button {
+  position: relative;
+}
+.dots button::after {
+  content: "";
+  position: absolute;
+  inset: -8px -4px;
+}
+.metrics dt {
+  color: var(--text);
+}

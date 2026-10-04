@@ -61,7 +61,7 @@ function OnePageArt() {
 
 /** Fan of real project screenshots that opens on hover. */
 function ShowcaseArt() {
-  const shots = ["/images/projets/hautefeuille.jpeg", "/images/projets/komplices.jpeg", "/images/projets/restaurant-3d.jpeg"];
+  const shots = ["/images/projets/hautefeuille.webp", "/images/projets/komplices.webp", "/images/projets/restaurant-3d.webp"];
   return (
     <div className="art-fan" aria-hidden="true">
       <span className="fan-orb" />
