@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Instrument_Serif, Plus_Jakarta_Sans } from "next/font/google";
+import { Instrument_Serif, Poppins } from "next/font/google";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { SmoothScroll } from "@/components/smooth-scroll";
@@ -11,11 +11,12 @@ import "./premium.css";
 import "./buttons.css";
 import "./polish.css";
 import "./calm.css";
+import "./clean.css";
 
-const jakarta = Plus_Jakarta_Sans({
+const jakarta = Poppins({
   variable: "--font-jakarta",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const instrument = Instrument_Serif({
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f4f0fb",
+  themeColor: "#ffffff",
   viewportFit: "cover",
 };
 

@@ -1,0 +1,350 @@
+/* ==========================================================================
+   Clean layer — inspired by simple agency sites: Poppins, white pages with
+   lots of empty space, a white pill header, flat violet buttons and
+   cards framed by a single 2px violet border.
+   ========================================================================== */
+
+:root {
+  --brand: #6d45f0;
+  --brand-soft: rgba(109, 69, 240, 0.1);
+  --ink: #111111;
+  --text: #4b5563;
+  --muted: #6b7280;
+}
+
+html,
+body {
+  background: #fff !important;
+}
+body {
+  color: var(--ink);
+  font-family: var(--font-jakarta), system-ui, sans-serif;
+}
+
+/* Remove decorative layers: pages are mostly empty white space */
+body::before,
+body::after,
+.aurora,
+.hero-sticky::before,
+.showcase .cs-stage::before,
+.portrait-wrap::before,
+.about-cta::before,
+.cs-glow,
+.spot::before,
+.ring-tile::after,
+.plan.featured::after,
+.p-card::after,
+.p-card::before {
+  display: none !important;
+}
+.hero-sticky,
+.marquee,
+.stats,
+.home-avis,
+.showcase,
+.showcase .cs-stage,
+.tools,
+.pricing,
+.about-hero,
+.page-top,
+.footer-night,
+.site-footer {
+  background: transparent !important;
+}
+
+/* ---------- Typography ---------- */
+.h-display,
+.h-section {
+  font-family: var(--font-jakarta), sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #000;
+}
+.h-display {
+  font-size: clamp(36px, 5vw, 60px);
+  line-height: 1.15;
+}
+.h-section {
+  font-size: clamp(30px, 3.6vw, 48px);
+  line-height: 1.15;
+}
+.serif,
+.h-display .serif,
+.h-section .serif,
+.footer-big .serif,
+.marquee-track .serif,
+.project-detail h2 .serif,
+.about-cta h2 .serif,
+.plan .price .serif,
+.p-card .serif {
+  font-family: inherit !important;
+  font-style: normal !important;
+  font-size: 1em !important;
+  font-weight: inherit !important;
+  letter-spacing: inherit !important;
+  background: none !important;
+  -webkit-text-fill-color: currentColor !important;
+  color: var(--brand) !important;
+  animation: none !important;
+}
+.lead {
+  color: var(--muted);
+  font-size: clamp(16px, 1.3vw, 18px);
+  line-height: 1.7;
+}
+.eyebrow,
+.p-kicker {
+  color: var(--brand) !important;
+  letter-spacing: 0.08em;
+}
+
+/* More breathing room between sections */
+main > section,
+main > div > section {
+  padding-block: clamp(80px, 11vw, 150px);
+}
+
+/* ---------- Header: white pill ---------- */
+.site-nav,
+.site-header.is-scrolled .site-nav {
+  background: #fff !important;
+  border: 1px solid rgba(17, 17, 17, 0.08) !important;
+  border-radius: 999px !important;
+  box-shadow: 0 10px 30px rgba(17, 17, 17, 0.08) !important;
+  backdrop-filter: none !important;
+}
+.brand {
+  font-weight: 700;
+  color: #000;
+}
+.nav-links a.btn-nav,
+.nav-links a.btn-nav.btn-ghost,
+.nav-links a.btn-nav.btn-primary {
+  --sb-bg: transparent;
+  --sb-fg: var(--brand);
+  font-weight: 700;
+  font-size: 15px;
+  padding: 10px 16px;
+}
+.nav-links a.btn-nav[aria-current="page"],
+.nav-links a.btn-nav:hover {
+  --sb-bg: var(--brand-soft);
+  --sb-fg: var(--brand);
+  color: var(--brand) !important;
+}
+.menu-btn {
+  background: var(--brand-soft) !important;
+  border: 0 !important;
+  color: var(--brand);
+}
+
+/* ---------- Buttons: flat, solid, bold ---------- */
+.btn,
+.round-btn,
+.btn::before,
+.btn::after,
+.round-btn::before,
+.round-btn::after {
+  animation: none !important;
+}
+.btn::before,
+.btn::after,
+.round-btn::before,
+.round-btn::after {
+  display: none !important;
+}
+.btn,
+.round-btn {
+  --sb-bg: var(--brand);
+  --sb-fg: #fff;
+  background: var(--sb-bg) !important;
+  color: var(--sb-fg) !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  font-weight: 700;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease !important;
+}
+.btn-ghost,
+.round-btn,
+.about-cta .btn-ghost {
+  --sb-bg: var(--brand-soft);
+  --sb-fg: var(--brand);
+}
+.btn-dark {
+  --sb-bg: var(--brand);
+}
+html .p-card .btn.p-btn,
+.about-cta .btn-primary {
+  --sb-bg: var(--brand);
+  --sb-fg: #fff;
+}
+.btn:hover {
+  --sb-bg: #5a34df;
+}
+.btn-ghost:hover,
+.round-btn:hover {
+  --sb-bg: rgba(109, 69, 240, 0.16);
+}
+.btn:active,
+.round-btn:active {
+  transform: scale(0.97);
+}
+
+/* ---------- Cards: white, 2px violet frame ---------- */
+.card,
+.plan,
+.pillar,
+.reason,
+.tst-card,
+.project-detail,
+.contact-form,
+.rdv-side,
+.stat,
+.footer-card,
+html .p-card {
+  background: #fff !important;
+  background-image: none !important;
+  color: var(--ink) !important;
+  border: 2px solid var(--brand) !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+.card::after,
+.pillar::after,
+.reason::after,
+.project-detail::after {
+  display: none !important;
+}
+html .p-card *,
+.plan.featured * {
+  color: inherit;
+}
+html .p-card p,
+html .p-card small,
+html .p-card .p-desc {
+  color: var(--muted) !important;
+}
+html .p-card .p-price b,
+.plan .price b,
+.stat b,
+.stat > span,
+.metrics dd {
+  background: none !important;
+  -webkit-text-fill-color: currentColor !important;
+  color: #000 !important;
+}
+html .p-card .p-feat li::before {
+  background-color: var(--brand-soft) !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M6 10.5l2.5 2.5L14 7.5' fill='none' stroke='%236D45F0' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+}
+html .p-card .p-feat,
+html .p-card hr,
+html .p-card [class*="divider"] {
+  border-color: rgba(17, 17, 17, 0.08) !important;
+}
+@media (hover: hover) {
+  .pillar,
+  .reason,
+  .stat,
+  .plan,
+  html .p-card {
+    transition: transform 0.3s ease !important;
+  }
+  .pillar:hover,
+  .reason:hover,
+  .stat:hover,
+  .plan:hover,
+  html .p-card:hover {
+    transform: scale(1.03) !important;
+  }
+}
+.tst-avatar,
+.pillar .ico,
+.plan .plan-icon {
+  background: var(--brand-soft) !important;
+  color: var(--brand) !important;
+  box-shadow: none !important;
+}
+.tst-card blockquote strong {
+  color: var(--brand) !important;
+  background: none !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+/* Portfolio stays the star, on plain white */
+.cs-card {
+  border: 0;
+  border-radius: 12px;
+  box-shadow: 0 20px 50px -24px rgba(17, 17, 17, 0.3);
+}
+.seg {
+  background: #fff !important;
+  border: 1px solid rgba(17, 17, 17, 0.08) !important;
+  box-shadow: 0 10px 30px rgba(17, 17, 17, 0.06) !important;
+}
+.seg-pill {
+  background: var(--brand-soft) !important;
+  box-shadow: none !important;
+}
+.seg a[aria-current="page"] {
+  color: var(--brand) !important;
+}
+.dots button.on,
+.tst-dots button.on i {
+  background: var(--brand) !important;
+}
+
+/* Quiet bands */
+.marquee {
+  border-color: rgba(17, 17, 17, 0.06) !important;
+}
+.marquee-track,
+.marquee-track * {
+  color: #000 !important;
+  background: none !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+.marquee-track i {
+  color: var(--brand) !important;
+}
+.about-cta {
+  background: #fff !important;
+  border: 2px solid var(--brand) !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+}
+.about-cta h2,
+.about-cta p {
+  color: #000 !important;
+}
+.footer-big,
+.footer-big * {
+  color: #000 !important;
+}
+.portrait {
+  border-radius: 12px !important;
+  box-shadow: none !important;
+}
+.hero-3d img {
+  filter: none !important;
+}
+
+.big-quote,
+.big-quote * {
+  font-family: var(--font-jakarta), sans-serif !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.02em;
+  font-size: clamp(22px, 2.2vw, 30px) !important;
+  line-height: 1.3 !important;
+  color: var(--brand) !important;
+}
+.stat > span,
+.p-price b,
+.plan .price b {
+  font-weight: 600 !important;
+  letter-spacing: -0.03em;
+}
