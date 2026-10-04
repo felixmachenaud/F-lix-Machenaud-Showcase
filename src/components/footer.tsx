@@ -26,7 +26,7 @@ export function Footer() {
           </div>
           <div className="footer-row">
             <Link href="/" className="brand">
-              <Image src="/images/logo-w.webp" alt="" width={40} height={30} className="brand-logo" priority />
+              <Image src="/images/logo.webp" alt="" width={40} height={30} className="brand-logo" priority />
               WebSite Studio
             </Link>
             <nav aria-label="Informations légales">

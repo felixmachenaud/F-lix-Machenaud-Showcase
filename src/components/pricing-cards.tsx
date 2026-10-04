@@ -122,7 +122,7 @@ export function PricingCards() {
             <Price plan={essentiel} />
             <Features plan={essentiel} />
             <Link href={essentiel.cta.href} className="btn p-btn">
-              {essentiel.cta.label}
+              {essentiel.cta.label} <span className="arrow">→</span>
             </Link>
           </article>
         </TiltCard>

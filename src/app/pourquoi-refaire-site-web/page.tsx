@@ -222,15 +222,15 @@ export default function PourquoiPage() {
             Passez à <span className="serif">l&apos;étape suivante</span>
           </h2>
           <p style={{ position: "relative", color: "#b5afc8", maxWidth: 560, margin: "18px auto 0", lineHeight: 1.6 }}>
-            Décrivez votre projet : nous pourrons définir si une refonte complète ou une évolution ciblée est la
+            Décrivez-moi votre projet : on verra ensemble si une refonte complète ou une évolution ciblée est la
             meilleure option pour votre activité.
           </p>
           <div className="ctas">
             <Link href="/contact" className="btn btn-primary">
-              Nous contacter <span className="arrow">→</span>
+              Me contacter <span className="arrow">→</span>
             </Link>
             <Link href="/rendez-vous" className="btn btn-ghost">
-              Vous préférez en parler de vive voix ?
+              On en parle de vive voix ?
             </Link>
           </div>
         </FadeIn>

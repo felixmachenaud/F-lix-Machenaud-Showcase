@@ -348,3 +348,390 @@ html .p-card [class*="divider"] {
   font-weight: 600 !important;
   letter-spacing: -0.03em;
 }
+
+/* Static keyword band: wraps and centres instead of being cut off */
+.marquee-track.is-static {
+  width: auto;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px 22px;
+  white-space: normal;
+  transform: none !important;
+  font-size: clamp(20px, 3vw, 34px);
+}
+@media (max-width: 760px) {
+  .marquee-track.is-static {
+    flex-direction: column;
+    gap: 6px;
+  }
+  .marquee-track.is-static i {
+    display: none;
+  }
+}
+
+
+/* ---------- Blue buttons (from the reference site) ---------- */
+:root {
+  --btn-blue: #4e81ee;
+  --btn-blue-hover: #3b6fe0;
+  --btn-blue-soft: rgba(78, 129, 238, 0.12);
+}
+.btn,
+.btn-primary,
+.btn-dark,
+html .p-card .btn.p-btn,
+.about-cta .btn-primary {
+  --sb-bg: var(--btn-blue);
+  --sb-fg: #fff;
+}
+.btn:hover,
+.btn-primary:hover {
+  --sb-bg: var(--btn-blue-hover);
+}
+.btn-ghost,
+.round-btn,
+.about-cta .btn-ghost {
+  --sb-bg: var(--btn-blue-soft);
+  --sb-fg: var(--btn-blue);
+}
+.btn-ghost:hover,
+.round-btn:hover {
+  --sb-bg: rgba(78, 129, 238, 0.2);
+}
+.nav-links a.btn-nav,
+.nav-links a.btn-nav.btn-ghost,
+.nav-links a.btn-nav.btn-primary {
+  --sb-fg: var(--btn-blue);
+  color: var(--btn-blue) !important;
+}
+.nav-links a.btn-nav[aria-current="page"],
+.nav-links a.btn-nav:hover {
+  --sb-bg: var(--btn-blue-soft);
+  color: var(--btn-blue) !important;
+}
+
+/* "Visiter" takes the colour of the project on screen */
+.btn.btn-visit,
+.btn.btn-visit:hover,
+.cs-visit {
+  --sb-bg: var(--c, var(--btn-blue));
+  --sb-fg: #fff;
+  background: var(--c, var(--btn-blue)) !important;
+  color: #fff !important;
+  transition: background-color 0.4s ease, filter 0.2s ease !important;
+}
+.btn.btn-visit:hover,
+.cs-visit:hover {
+  filter: brightness(0.92);
+}
+
+/* ---------- Logo: just the mark, no motion, no photo look ---------- */
+.brand-logo,
+.brand:hover .brand-logo {
+  filter: none !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* ---------- Key pages of each project: same card fan + arrows, text below ---------- */
+.pp-list {
+  margin-top: clamp(90px, 11vw, 150px);
+  display: grid;
+  gap: clamp(100px, 12vw, 160px);
+}
+.pp-head {
+  text-align: center;
+}
+.pp-title {
+  font-size: clamp(28px, 3.4vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin: 6px 0 0;
+  color: #000;
+}
+.pp-section .cs-stage {
+  margin-top: 24px;
+}
+.pp-current {
+  margin: 14px 0 0;
+  text-align: center;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--c);
+}
+.pp-text {
+  max-width: 640px;
+  margin: 28px auto 0;
+  padding: 0 20px;
+  text-align: center;
+}
+.pp-text h3 {
+  font-size: clamp(20px, 2vw, 24px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+  color: #000;
+}
+.pp-text h3 .serif {
+  color: var(--c) !important;
+}
+.pp-text p {
+  margin: 14px 0 24px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* ---------- One palette: violet → blue, matching the buttons ---------- */
+:root {
+  --brand: #5b6cf2;
+  --brand-soft: rgba(91, 108, 242, 0.1);
+  --violet: #5b6cf2;
+  --violet-2: #6f82f5;
+  --violet-3: #9aa8fa;
+  --violet-50: #eef0fe;
+  --indigo: #4e81ee;
+  --orchid: #7a63f1;
+  --rose: #8f7cf6;
+  --indigo-50: #ebf1fe;
+  --orchid-50: #f0edfe;
+  --rose-50: #f3f0ff;
+  --grad: linear-gradient(100deg, #4e81ee, #5b6cf2 50%, #7a63f1);
+}
+.round-btn {
+  --sb-bg: var(--btn-blue-soft);
+  --sb-fg: var(--btn-blue);
+}
+.dots button.on,
+.tst-dots button.on i {
+  background: var(--btn-blue) !important;
+}
+
+.pp-section .cs-visit {
+  display: none;
+}
+
+/* Hero tiles: size comes from the layout (inline), glyphs scale with the tile */
+.ring-tile > span,
+.ring-tile.is-small > span {
+  font-size: 1em !important;
+}
+.ring-tile > span.serif,
+.ring-tile.is-small > span.serif {
+  font-size: 1.35em !important;
+}
+.ring-tile {
+  border-radius: clamp(10px, 0.16em * 6, 18px);
+}
+.hero-ctas .btn {
+  max-width: calc(100vw - 40px);
+}
+
+/* ==========================================================================
+   Detail pass — one frame language everywhere: 2px brand border, 12px radius.
+   ========================================================================== */
+
+/* Equal-height cards in every grid */
+.pillars > div,
+.reasons > div,
+.p-grid > .p-cell {
+  display: flex;
+}
+.pillars > div > .pillar,
+.reasons > div > .reason {
+  flex: 1;
+}
+
+/* Rendez-vous: one frame, a hairline divider inside (no double border) */
+.rdv-side {
+  border: 0 !important;
+  border-right: 1px solid rgba(17, 17, 17, 0.08) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+@media (max-width: 900px) {
+  .rdv-side {
+    border-right: 0 !important;
+    border-bottom: 1px solid rgba(17, 17, 17, 0.08) !important;
+  }
+}
+
+/* Portfolio stage: no extra rounded outline around the card fan */
+.cs-stage,
+.showcase .cs-stage {
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+
+/* Serif leftovers -> Poppins */
+.about-quote,
+.reason .num,
+.about-text p:first-child::first-letter {
+  font-family: var(--font-jakarta), sans-serif !important;
+  font-style: normal !important;
+}
+.about-quote {
+  font-weight: 600;
+  font-size: clamp(22px, 2.2vw, 28px);
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--brand);
+}
+.about-text p:first-child::first-letter {
+  float: none !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: inherit !important;
+  font-weight: inherit !important;
+}
+.reason .num {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--brand) !important;
+}
+
+/* About CTA: LinkedIn link was white on white */
+.about-cta .link,
+.next-step p {
+  color: var(--muted) !important;
+}
+.about-cta .link:hover {
+  color: var(--btn-blue) !important;
+}
+
+/* Footer card: same radius and hairline as the rest, decoration kept inside */
+.footer-night {
+  border-radius: 12px !important;
+  border: 2px solid var(--brand) !important;
+  background: #fff !important;
+}
+.footer-inf {
+  display: none !important;
+}
+
+/* Pricing: three cards aligned, same height */
+html .p-cell-featured {
+  margin: 0 !important;
+}
+.p-grid {
+  align-items: stretch;
+}
+.p-ribbon {
+  background: var(--btn-blue) !important;
+  color: #fff !important;
+  box-shadow: none !important;
+}
+/* Tools illustration was drawn in white for the old coloured card */
+html .art-nodes .link {
+  stroke: rgba(91, 108, 242, 0.25);
+}
+html .art-nodes .pulse {
+  stroke: var(--btn-blue);
+}
+html .art-nodes .hub {
+  fill: #fff;
+  stroke: var(--brand);
+  stroke-width: 2;
+  filter: none;
+}
+html .art-nodes .hub-t {
+  font: 600 20px var(--font-jakarta), sans-serif;
+  fill: var(--brand);
+}
+html .art-nodes .node circle {
+  fill: #fff;
+  stroke: var(--brand);
+  stroke-width: 1.5;
+}
+html .art-nodes .node text {
+  fill: var(--brand);
+}
+/* Same calm surface as the rest for the note under the offers */
+html .pricing-note {
+  background: #f5f7fe !important;
+  border: 0 !important;
+  border-radius: 12px !important;
+}
+/* Footer title: solid colour, no coloured fringe */
+.footer-big,
+.footer-big * {
+  text-shadow: none !important;
+  -webkit-text-stroke: 0 !important;
+}
+.footer-big .serif {
+  background: none !important;
+  -webkit-text-fill-color: var(--brand) !important;
+  color: var(--brand) !important;
+}
+input[type="checkbox"] {
+  accent-color: var(--btn-blue);
+}
+
+/* Testimonial progress dots: clean pill, filled by a straight bar clipped by the pill */
+.tst-dots button {
+  overflow: hidden !important;
+  background: rgba(91, 108, 242, 0.18) !important;
+}
+.tst-dots button.on {
+  background: rgba(78, 129, 238, 0.18) !important;
+}
+.tst-dots i {
+  border-radius: 0 !important;
+  background: var(--btn-blue) !important;
+}
+.tst-nav {
+  margin-top: 32px !important;
+}
+
+/* Card fan: soft neutral shadow (the tinted one was clipped into a hard band) */
+.cs-card {
+  box-shadow: 0 18px 40px -22px rgba(17, 17, 17, 0.35) !important;
+}
+.cs-card::after {
+  display: none;
+}
+
+/* Every section heading in the same weight */
+main h2:not([class]),
+.about-cta h2,
+.next-step h2 {
+  font-weight: 700 !important;
+  letter-spacing: -0.03em;
+  color: #000;
+}
+.about-cta {
+  padding-block: clamp(48px, 7vw, 80px) !important;
+}
+/* Chat bubble: solid brand instead of gradient */
+.bubble.q {
+  background: var(--brand) !important;
+}
+
+/* 404 number in the site font */
+.not-found .big {
+  font-family: var(--font-jakarta), sans-serif !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.05em;
+  color: var(--brand) !important;
+  background: none !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+/* Long button labels wrap instead of touching the edges */
+.btn {
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+}
+
+html .project-detail h2 {
+  font-weight: 600 !important;
+  letter-spacing: -0.02em;
+}

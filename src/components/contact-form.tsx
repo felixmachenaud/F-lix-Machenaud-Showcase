@@ -101,7 +101,7 @@ export function ContactForm() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <h2>Envoyez-nous un message</h2>
+            <h2>Envoyez-moi un message</h2>
             <div className="field">
               <label htmlFor="name">Nom</label>
               <input

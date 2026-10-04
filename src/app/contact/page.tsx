@@ -16,10 +16,10 @@ export default function ContactPage() {
       <Aurora />
       <div className="wrap contact-grid">
         <div className="contact-intro">
-          <RevealTitle as="h1" className="h-display" text="Contactez-[[nous]]" immediate />
+          <RevealTitle as="h1" className="h-display" text="Écrivez-[[moi]]" immediate />
           <FadeIn as="p" className="lead" delay={0.3}>
-            Une question sur votre futur site, un devis ou simplement envie d&apos;échanger ? Écrivez-nous ou
-            appelez-nous, on vous répond rapidement.
+            Une question sur votre futur site, un devis ou simplement envie d&apos;échanger ? Écrivez-moi ou
+            appelez-moi, je vous réponds dans la journée.
           </FadeIn>
           <FadeIn delay={0.4}>
             <dl className="coords">

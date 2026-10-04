@@ -43,7 +43,7 @@ export function Header() {
       >
         <nav className="site-nav" aria-label="Navigation principale">
           <Link href="/" className="brand">
-            <Image src="/images/logo-w.webp" alt="" width={40} height={30} className="brand-logo" priority />
+            <Image src="/images/logo.webp" alt="" width={40} height={30} className="brand-logo" priority />
             WebSite Studio
           </Link>
           <ul className="nav-links">

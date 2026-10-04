@@ -75,34 +75,22 @@ export default function AboutPage() {
 
         <ScrollHighlight
           className="big-quote"
-          text="Aujourd'hui, la présence en ligne n'est plus une option, c'est une nécessité. Mon rôle est de vous livrer un site dont vous pouvez être fier."
+          text="Un bon site, c'est souvent le premier contact avec vos clients. Je fais en sorte qu'il vous ressemble."
         />
 
         <div className="about-body">
           <FadeIn as="p" className="about-quote">
-            Transformer votre message en une expérience en ligne crédible et efficace.
+            Simple, clair, et fait avec soin.
           </FadeIn>
           <div className="about-text">
             <FadeIn as="p">
-              J&apos;accompagne les entreprises et les indépendants qui veulent un site web à la hauteur de leur
-              activité : clair, professionnel, pensé pour convertir et pour être trouvé par vos clients.
-              L&apos;objectif est simple : transformer votre message en une expérience en ligne crédible et efficace.
+              Je travaille avec des indépendants et des petites entreprises qui veulent un site propre, rapide et
+              facile à trouver sur Google.
             </FadeIn>
             <FadeIn as="p">
-              Mon travail repose sur une approche technique solide et une méthode de projet structurée : cadrage des
-              besoins, proposition claire des livrables, échanges réguliers et exécution soignée. Les outils actuels,
-              avec l&apos;aide de l&apos;intelligence artificielle, me permettent de gagner en efficacité et en clarté,
-              sans rogner sur la qualité ni sur le contrôle humain ainsi que sur le contenu et votre image.
-            </FadeIn>
-            <FadeIn as="p">
-              Vous savez à quoi vous attendre : le périmètre du délai est donné dès le départ, les étapes sont
-              visibles, et vous gardez la main sur les arbitrages importants. Cette transparence fait partie du
-              service — elle évite les mauvaises surprises et sécurise votre investissement.
-            </FadeIn>
-            <FadeIn as="p">
-              Chaque mission est traitée comme une collaboration : écoute, réactivité et exigence sur le détail. Mon
-              rôle est de vous livrer un site dont vous pouvez être fier, aligné sur vos objectifs business et prêt à
-              évoluer avec vous.
+              On commence par un échange pour comprendre votre activité. Ensuite je vous montre chaque étape, vous
+              donnez votre avis, et on avance ensemble jusqu&apos;à la mise en ligne. Pas de jargon, pas de mauvaise
+              surprise.
             </FadeIn>
           </div>
         </div>

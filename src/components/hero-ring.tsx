@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   motion,
   useMotionValue,
@@ -35,6 +35,66 @@ const tiles = Array.from({ length: COUNT }, (_, i) =>
     : { kind: "glyph" as const, glyph: glyphs[((i - 1) / 2) % glyphs.length] },
 );
 
+/**
+ * Places the tiles on a squircle that hugs the viewport edges, so every tile stays fully on screen,
+ * sizes the 3D title to fit inside, and drops the tiles that would overlap the title or the buttons.
+ * Works the same on phones, tablets, laptops and wide screens, in portrait and landscape.
+ */
+function heroLayout(w: number, h: number, small: boolean) {
+  const tw = Math.round(Math.min(118, Math.max(40, Math.min(w, h) * 0.11)));
+  const th = Math.round(tw * 1.27);
+  const edge = 14; // keeps rotated tiles and the mouse parallax inside the screen
+  const RX = w / 2 - tw / 2 - edge;
+  const RY = h / 2 - th / 2 - edge;
+
+  // Title + buttons block, centred. Buttons stack on phones.
+  const gap = Math.round(Math.min(40, Math.max(18, h * 0.035)));
+  const ctaH = small ? 108 : 52;
+  const ratio = HERO_3D.height / HERO_3D.width;
+  const maxByHeight = (2 * (RY - th / 2) - gap - ctaH - 16) / ratio;
+  const titleW = Math.round(Math.max(200, Math.min(640, w - 40, w * 0.62 + (small ? w * 0.3 : 0), maxByHeight)));
+  const blockW = Math.max(titleW, small ? Math.min(w - 40, 320) : 600);
+  const blockH = titleW * ratio + gap + ctaH;
+
+  // Tiles are spread at equal distances along a rounded rectangle that follows the screen edges.
+  const r = Math.min(RX, RY) * 0.45;
+  const sx = RX - r;
+  const sy = RY - r;
+  const segs = [2 * sx, (Math.PI / 2) * r, 2 * sy, (Math.PI / 2) * r, 2 * sx, (Math.PI / 2) * r, 2 * sy, (Math.PI / 2) * r];
+  const total = segs.reduce((a, b) => a + b, 0);
+  const pointAt = (d: number) => {
+    // starts at the top centre, clockwise
+    let t = (d + sx) % total;
+    const corner = (cx: number, cy: number, a0: number, u: number) => ({
+      tx: cx + r * Math.cos(a0 + (u / r)),
+      ty: cy + r * Math.sin(a0 + (u / r)),
+    });
+    if (t < segs[0]) return { tx: -sx + t, ty: -RY };
+    t -= segs[0];
+    if (t < segs[1]) return corner(sx, -sy, -Math.PI / 2, t);
+    t -= segs[1];
+    if (t < segs[2]) return { tx: RX, ty: -sy + t };
+    t -= segs[2];
+    if (t < segs[3]) return corner(sx, sy, 0, t);
+    t -= segs[3];
+    if (t < segs[4]) return { tx: sx - t, ty: RY };
+    t -= segs[4];
+    if (t < segs[5]) return corner(-sx, sy, Math.PI / 2, t);
+    t -= segs[5];
+    if (t < segs[6]) return { tx: -RX, ty: sy - t };
+    t -= segs[6];
+    return corner(-sx, -sy, Math.PI, t);
+  };
+  const clear = 12;
+  const tilesPos = Array.from({ length: COUNT }, (_, i) => {
+    const { tx, ty } = pointAt((i / COUNT) * total);
+    const overlaps = Math.abs(tx) < blockW / 2 + tw / 2 + clear && Math.abs(ty) < blockH / 2 + th / 2 + clear;
+    return overlaps ? null : { tx, ty };
+  });
+
+  return { tw, th, titleW, gap, tiles: tilesPos };
+}
+
 function useStageSize() {
   const [size, setSize] = useState({ w: 1440, h: 900 });
   useEffect(() => {
@@ -51,31 +111,32 @@ function Tile({
   progress,
   mx,
   my,
-  rx,
-  ry,
+  tx,
+  ty,
+  tw,
+  th,
   small,
 }: {
   index: number;
   progress: MotionValue<number>;
   mx: MotionValue<number>;
   my: MotionValue<number>;
-  rx: number;
-  ry: number;
+  tx: number;
+  ty: number;
+  tw: number;
+  th: number;
   small: boolean;
 }) {
   const tile = tiles[index];
-  const angle = (index / COUNT) * Math.PI * 2 - Math.PI / 2;
-  const tx = Math.cos(angle) * rx;
-  const ty = Math.sin(angle) * ry;
-  const rot = Math.cos(angle) * -28 + ((index % 3) - 1) * 6;
+  const rot = ((index % 5) - 2) * 4;
   const start = (index % 6) * 0.045;
   const depth = 0.4 + ((index * 7) % 5) * 0.15;
 
   const k = useTransform(progress, [start, start + 0.55], [0, 1], { clamp: true });
-  const x = useTransform([k, mx] as MotionValue<number>[], ([v, m]: number[]) => tx * v + m * 18 * depth * v);
+  const x = useTransform([k, mx] as MotionValue<number>[], ([v, m]: number[]) => tx * v + m * 6 * depth * v);
   const y = useTransform(
     [k, my] as MotionValue<number>[],
-    ([v, m]: number[]) => ty * v + (1 - v) * 90 + m * 14 * depth * v,
+    ([v, m]: number[]) => ty * v + (1 - v) * 90 + m * 5 * depth * v,
   );
   const rotate = useTransform(k, (v) => rot * v);
   const scale = useTransform(k, (v) => 0.35 + 0.65 * v);
@@ -83,7 +144,7 @@ function Tile({
   return (
     <motion.div
       className={`ring-tile${small ? " is-small" : ""}`}
-      style={{ x, y, rotate, scale, opacity: k }}
+      style={{ x, y, rotate, scale, opacity: k, width: tw, height: th, marginLeft: -tw / 2, marginTop: -th / 2, fontSize: Math.round(tw * 0.24) }}
       whileHover={{ scale: 1.08, zIndex: 5 }}
       transition={{ type: "spring", stiffness: 300, damping: 22 }}
     >
@@ -114,12 +175,8 @@ export function HeroRing() {
   const my = useSpring(myRaw, { stiffness: 60, damping: 18 });
 
   const hintOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
-  const tiltY = useTransform(mx, (v) => v * 7);
-  const tiltX = useTransform(my, (v) => v * -5);
 
-  // On phones the ellipse frames the screen edges so tiles never cover the title or the buttons.
-  const rx = small ? w * 0.6 : Math.min(w * 0.43, 640);
-  const ry = small ? h * 0.44 : Math.min(h * 0.4, 360);
+  const layout = useMemo(() => heroLayout(w, h, small), [w, h, small]);
 
   return (
     <section
@@ -134,7 +191,9 @@ export function HeroRing() {
       <div className="hero-sticky">
         <div className="hero-ring" aria-hidden="true">
           {tiles.map((_, i) => (
-            <Tile key={i} index={i} progress={progress} mx={mx} my={my} rx={rx} ry={ry} small={small} />
+            layout.tiles[i] ? (
+              <Tile key={i} index={i} progress={progress} mx={mx} my={my} {...layout.tiles[i]} tw={layout.tw} th={layout.th} small={small} />
+            ) : null
           ))}
         </div>
 
@@ -143,33 +202,24 @@ export function HeroRing() {
           <h1 className="sr-only">Construisons l&apos;infini.</h1>
           <motion.div
             className="hero-3d"
+            style={{ width: layout.titleW, marginTop: 0 }}
             transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="hero-3d-float">
               <Image
-                src="/images/construisons-linfini-3d.webp"
+                src="/images/titre-3d-v2.webp"
                 alt=""
                 width={HERO_3D.width}
                 height={HERO_3D.height}
                 priority
                 sizes="(max-width: 760px) 92vw, 630px"
               />
-              <svg className="hero-3d-runner" viewBox={`0 0 ${HERO_3D.width} ${HERO_3D.height}`} aria-hidden="true">
-                <path id="hero-tube" d={HERO_3D.tubePath} fill="none" />
-                <motion.g initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.4, duration: 0.6 }}>
-                  <circle r="36" fill="#6D45F0" fillOpacity=".18" />
-                  <circle r="13" fill="#6D45F0" />
-                  <circle r="5" fill="#fff" fillOpacity=".85" />
-                  <animateMotion dur="9s" repeatCount="indefinite">
-                    <mpath href="#hero-tube" />
-                  </animateMotion>
-                </motion.g>
-              </svg>
             </div>
           </motion.div>
 
           <motion.div
             className="hero-ctas"
+            style={{ marginTop: layout.gap }}
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.75, ease: [0.22, 1, 0.36, 1] }}

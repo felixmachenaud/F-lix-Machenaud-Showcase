@@ -112,11 +112,8 @@ export function VelocityMarquee({ items }: { items: string[]; baseVelocity?: num
 
   return (
     <div className="marquee" role="marquee" aria-label={items.join(", ")}>
-      <div className="marquee-track" style={{ transform: "translateX(-25%)" }} aria-hidden="true">
-        {row}
-        {row}
-        {row}
-        {row}
+      <div className="marquee-track is-static" aria-hidden="true">
+        {row.slice(0, -1)}
       </div>
     </div>
   );

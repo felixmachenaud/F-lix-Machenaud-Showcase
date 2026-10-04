@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { categories, type Category, type Project } from "@/lib/data";
 import { CardStack } from "./card-stack";
 import { Accent } from "./reveal";
+import { ProjectPages } from "./project-pages";
 
 export function ProjectsShowcase({ category, items }: { category: Category; items: Project[] }) {
   const [active, setActive] = useState(0);
@@ -70,8 +71,8 @@ export function ProjectsShowcase({ category, items }: { category: Category; item
                 <Accent text={project.headline} />
               </h2>
               <p>{project.body}</p>
-              <a className="btn btn-ghost" href={project.href} target="_blank" rel="noreferrer">
-                Visiter <span className="arrow">↗</span>
+              <a className="btn btn-visit" href={project.href} target="_blank" rel="noreferrer">
+                Visiter le site <span className="arrow">↗</span>
               </a>
             </div>
             <dl className="metrics">
@@ -85,6 +86,8 @@ export function ProjectsShowcase({ category, items }: { category: Category; item
           </motion.article>
         </AnimatePresence>
       </div>
+
+      <ProjectPages items={items} />
     </div>
   );
 }
