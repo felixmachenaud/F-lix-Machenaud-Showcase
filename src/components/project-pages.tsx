@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo } from "react";
 import type { Project } from "@/lib/data";
-import { CardStack } from "./card-stack";
+import { LiquidGlassCarousel } from "./ui/liquid-glass-carousel";
 import { Accent } from "./reveal";
 
 /** The key pages captured for each project (public/images/pages/{slug}-{n}.webp). */
@@ -16,7 +16,9 @@ const PAGES: Record<string, string[]> = {
   walt: ["Inscription", "Connexion"],
 };
 
-/** One block per project: its key pages in the same card fan as the main carousel, with arrows and a short text. */
+const STAGE_BG = "#0b0b14";
+
+/** One full-width dark band per project: its pages lit up in a liquid-glass carousel, with its text below. */
 export function ProjectPages({ items }: { items: Project[] }) {
   return (
     <div className="pp-list">
@@ -26,15 +28,16 @@ export function ProjectPages({ items }: { items: Project[] }) {
 }
 
 function ProjectPagesItem({ project, labels }: { project: Project; labels: string[] }) {
-  const [active, setActive] = useState(0);
-  const count = labels.length;
-  const go = (k: number) => setActive(((k % count) + count) % count);
-  const cards = labels.map((label, i) => ({
-    id: `${project.slug}-${i}`,
-    title: `${project.name} — ${label}`,
-    imageSrc: `/images/pages/${project.slug}-${i + 1}.webp`,
-    href: project.href,
-  }));
+  // Stable reference: the carousel rebuilds its WebGL scene whenever `items` changes.
+  const pages = useMemo(
+    () =>
+      labels.map((label, i) => ({
+        title: label,
+        src: `/images/pages/${project.slug}-${i + 1}.webp`,
+        aspect: 1.6,
+      })),
+    [labels, project.slug],
+  );
 
   return (
     <section className="pp-section" style={{ ["--c" as string]: project.accent }} aria-label={`Pages du site ${project.name}`}>
@@ -43,30 +46,16 @@ function ProjectPagesItem({ project, labels }: { project: Project; labels: strin
         <h2 className="pp-title">{project.name}</h2>
       </header>
 
-      <CardStack items={cards} active={active} onChange={setActive} />
-
-      {count > 1 && (
-        <div className="cs-nav">
-          <button className="round-btn" onClick={() => go(active - 1)} aria-label="Page précédente">
-            ←
-          </button>
-          <div className="dots">
-            {labels.map((label, i) => (
-              <button
-                key={label}
-                className={i === active ? "on" : undefined}
-                onClick={() => go(i)}
-                aria-label={`Voir la page ${label}`}
-                aria-pressed={i === active}
-              />
-            ))}
-          </div>
-          <button className="round-btn" onClick={() => go(active + 1)} aria-label="Page suivante">
-            →
-          </button>
-        </div>
-      )}
-      <p className="pp-current">{labels[active]}</p>
+      <LiquidGlassCarousel
+        className="pp-carousel"
+        items={pages}
+        background={STAGE_BG}
+        foreground="#f5f5f7"
+        panelHeight={460}
+        gap={18}
+        entry={false}
+        label={`Pages du site ${project.name}`}
+      />
 
       <div className="pp-text">
         <h3>

@@ -13,7 +13,6 @@ import {
   type MotionValue,
 } from "motion/react";
 import { allProjects } from "@/lib/data";
-import { HERO_3D } from "@/lib/hero-3d";
 
 type Glyph = { text: string; bg: string; serif?: boolean };
 
@@ -50,7 +49,7 @@ function heroLayout(w: number, h: number, small: boolean) {
   // Title + buttons block, centred. Buttons stack on phones.
   const gap = Math.round(Math.min(40, Math.max(18, h * 0.035)));
   const ctaH = small ? 108 : 52;
-  const ratio = HERO_3D.height / HERO_3D.width;
+  const ratio = 0.22; // simple two-line text title
   const maxByHeight = (2 * (RY - th / 2) - gap - ctaH - 16) / ratio;
   const titleW = Math.round(Math.max(200, Math.min(640, w - 40, w * 0.62 + (small ? w * 0.3 : 0), maxByHeight)));
   const blockW = Math.max(titleW, small ? Math.min(w - 40, 320) : 600);
@@ -198,24 +197,9 @@ export function HeroRing() {
         </div>
 
         <div className="hero-center">
-          {/* The real title stays for search engines and screen readers; the 3D render is its visual. */}
-          <h1 className="sr-only">Construisons l&apos;infini.</h1>
-          <motion.div
-            className="hero-3d"
-            style={{ width: layout.titleW, marginTop: 0 }}
-            transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <div className="hero-3d-float">
-              <Image
-                src="/images/titre-3d-v2.webp"
-                alt=""
-                width={HERO_3D.width}
-                height={HERO_3D.height}
-                priority
-                sizes="(max-width: 760px) 92vw, 630px"
-              />
-            </div>
-          </motion.div>
+          <h1 className="hero-title-simple">
+            Construisons <span>l&apos;infini.</span>
+          </h1>
 
           <motion.div
             className="hero-ctas"
