@@ -3,6 +3,8 @@ import { site } from "@/lib/data";
 import { ContactForm } from "@/components/contact-form";
 import { FadeIn, RevealTitle } from "@/components/reveal";
 import { Aurora } from "@/components/effects";
+import { breadcrumbs } from "@/lib/schema";
+import { JsonLd } from "@/components/json-ld";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -13,6 +15,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <section className="page-top contact">
+      <JsonLd data={breadcrumbs([{ name: "Contact", path: "/contact" }])} />
       <Aurora />
       <div className="wrap contact-grid">
         <div className="contact-intro">

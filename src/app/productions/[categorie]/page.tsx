@@ -5,6 +5,8 @@ import { categories, projects, tools, type Category } from "@/lib/data";
 import { ProjectsShowcase } from "@/components/projects-showcase";
 import { FadeIn, RevealTitle } from "@/components/reveal";
 import { Aurora } from "@/components/effects";
+import { breadcrumbs, portfolio } from "@/lib/schema";
+import { JsonLd } from "@/components/json-ld";
 
 export const dynamicParams = false;
 
@@ -16,8 +18,11 @@ export async function generateMetadata({ params }: PageProps<"/productions/[cate
   const { categorie } = await params;
   const label = categories[categorie as Category]?.label ?? "Réalisations";
   return {
-    title: `${label} — Mes réalisations`,
-    description: "Chaque projet avec son contexte et ses résultats : sites vitrines et applications sur mesure.",
+    title: `${label} — Réalisations de sites web sur mesure`,
+    description:
+      categorie === "application"
+        ? "Applications web sur mesure : conciergerie connectée à Beds24, plateforme de mentorat Walt. Contexte, choix techniques et résultats."
+        : "Sites vitrines créés sur mesure pour un restaurant, une école, une conciergerie et un cabinet IA : pages clés, contexte et résultats chiffrés.",
   };
 }
 
@@ -41,6 +46,7 @@ export default async function ProductionsPage({ params }: PageProps<"/production
 
   return (
     <>
+      <JsonLd data={[breadcrumbs([{ name: "Mes réalisations", path: `/productions/${categorie}` }]), portfolio(categorie as Category)]} />
       <section className="page-top productions-top">
         <Aurora />
         <div className="wrap">

@@ -4,10 +4,12 @@ import Link from "next/link";
 import { site } from "@/lib/data";
 import { FadeIn, RevealTitle } from "@/components/reveal";
 import { Aurora, ParallaxReveal, ScrollHighlight, TiltCard } from "@/components/effects";
+import { breadcrumbs } from "@/lib/schema";
+import { JsonLd } from "@/components/json-ld";
 
 export const metadata: Metadata = {
   title: "À propos",
-  description: "Une approche humaine, technique et orientée résultats pour des sites web à la hauteur de votre activité.",
+  description: "Félix Machenaud, développeur web indépendant : je conçois et code des sites vitrines sur mesure, rapides et bien référencés, en direct avec vous.",
 };
 
 const pillars = [
@@ -37,6 +39,7 @@ const pillars = [
 export default function AboutPage() {
   return (
     <section className="page-top about">
+      <JsonLd data={breadcrumbs([{ name: "À propos", path: "/a-propos" }])} />
       <Aurora />
       <div className="wrap">
         <div className="about-hero">
@@ -95,6 +98,7 @@ export default function AboutPage() {
           </div>
         </div>
 
+        <h2 className="sr-only">Ma façon de travailler</h2>
         <div className="pillars">
           {pillars.map((p, i) => (
             <FadeIn key={p.title} delay={i * 0.1}>

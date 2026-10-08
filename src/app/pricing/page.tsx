@@ -4,6 +4,8 @@ import { FadeIn, RevealTitle } from "@/components/reveal";
 import { Aurora } from "@/components/effects";
 import { PricingCards } from "@/components/pricing-cards";
 import "./pricing.css";
+import { breadcrumbs } from "@/lib/schema";
+import { JsonLd } from "@/components/json-ld";
 
 export const metadata: Metadata = {
   title: "Tarifs",
@@ -14,6 +16,7 @@ export const metadata: Metadata = {
 export default function PricingPage() {
   return (
     <section className="page-top pricing">
+      <JsonLd data={breadcrumbs([{ name: "Tarifs", path: "/pricing" }])} />
       <Aurora />
       <div className="wrap">
         <RevealTitle as="h1" className="h-display" text="Choisissez l'offre [[qui vous ressemble]]" immediate />

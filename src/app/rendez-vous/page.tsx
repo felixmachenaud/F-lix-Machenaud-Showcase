@@ -3,6 +3,8 @@ import { site } from "@/lib/data";
 import { CalendarPreview } from "@/components/calendar-preview";
 import { FadeIn, RevealTitle } from "@/components/reveal";
 import { Aurora } from "@/components/effects";
+import { breadcrumbs } from "@/lib/schema";
+import { JsonLd } from "@/components/json-ld";
 
 export const metadata: Metadata = {
   title: "Prendre rendez-vous",
@@ -15,6 +17,7 @@ const points = ["Appel de 30 minutes", "Visio ou téléphone", "Sans engagement"
 export default function RendezVousPage() {
   return (
     <section className="page-top rdv">
+      <JsonLd data={breadcrumbs([{ name: "Prendre rendez-vous", path: "/rendez-vous" }])} />
       <Aurora />
       <div className="wrap">
         <RevealTitle

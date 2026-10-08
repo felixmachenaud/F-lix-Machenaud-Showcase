@@ -3,6 +3,8 @@ import Link from "next/link";
 import { ChatFaq, type Exchange } from "@/components/chat-faq";
 import { FadeIn, RevealTitle } from "@/components/reveal";
 import { Aurora } from "@/components/effects";
+import { breadcrumbs } from "@/lib/schema";
+import { JsonLd } from "@/components/json-ld";
 
 const tones = [
   { c: "var(--violet)", t: "var(--violet-50)" },
@@ -119,6 +121,7 @@ const gauges = ["Vitesse", "Confort", "Stabilité"];
 export default function PourquoiPage() {
   return (
     <>
+      <JsonLd data={breadcrumbs([{ name: "Pourquoi refaire votre site web", path: "/pourquoi-refaire-site-web" }])} />
       <section className="page-top article-top">
         <Aurora />
         <div className="wrap">

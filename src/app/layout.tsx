@@ -4,6 +4,8 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { site } from "@/lib/data";
+import { siteGraph } from "@/lib/schema";
+import { JsonLd } from "@/components/json-ld";
 import "./globals.css";
 import "./pages.css";
 import "./color.css";
@@ -29,7 +31,7 @@ const instrument = Instrument_Serif({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — ${site.owner}`,
+    default: `Création de site web sur mesure — ${site.name}`,
     template: `%s — ${site.name}`,
   },
   description: site.description,
@@ -49,32 +51,22 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#ffffff",
+  width: "device-width",
+  initialScale: 1,
   viewportFit: "cover",
+  interactiveWidget: "resizes-content",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#ffffff" },
+  ],
+  colorScheme: "light",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="fr" className={`${jakarta.variable} ${instrument.variable}`} suppressHydrationWarning>
+    <html lang="fr-FR" className={`${jakarta.variable} ${instrument.variable}`} suppressHydrationWarning>
       <body>
-        <script
-          type="application/ld+json"
-          // Structured data for search engines: who the studio is and how to reach it.
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "ProfessionalService",
-              name: site.name,
-              url: site.url,
-              email: site.email,
-              telephone: site.phone,
-              founder: { "@type": "Person", name: site.owner },
-              areaServed: "FR",
-              description: site.description,
-              sameAs: [site.linkedin],
-            }),
-          }}
-        />
+        <JsonLd data={siteGraph()} />
         <SmoothScroll />
         <Header />
         <main>{children}</main>

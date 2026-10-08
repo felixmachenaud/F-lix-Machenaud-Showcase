@@ -999,3 +999,110 @@ html .p-card {
   margin: 0 0 12px;
   color: var(--text);
 }
+
+/* ==========================================================================
+   Mobile baseline (native feel): no tap flash, no font inflation, instant taps,
+   controls not text-selectable, inputs never trigger iOS zoom, safe areas.
+   ========================================================================== */
+html {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+button,
+a,
+[role="button"],
+.btn,
+.round-btn,
+.seg a,
+.dots button {
+  touch-action: manipulation;
+}
+button,
+[role="button"],
+.btn,
+.round-btn,
+.seg a,
+.menu-btn {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+input,
+textarea,
+select {
+  font-size: max(16px, 1em) !important;
+}
+.btn:active,
+.round-btn:active {
+  transform: scale(0.97);
+  transition-duration: 0.1s !important;
+}
+.mobile-menu {
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  overscroll-behavior: contain;
+}
+.pp-carousel {
+  touch-action: pan-y;
+}
+/* Hover lifts only where a real pointer can hover (no sticky hover after a tap) */
+@media (hover: none) {
+  .pillar:hover,
+  .reason:hover,
+  .stat:hover,
+  .plan:hover,
+  html .p-card:hover,
+  .btn:hover,
+  .round-btn:hover {
+    transform: none !important;
+  }
+  .btn:not(.btn-ghost):hover::after {
+    transform: translateX(-120%);
+  }
+}
+
+/* ---------- Accessibility pass (Lighthouse / WCAG 2.2) ---------- */
+/* 24px tap targets around the small dots: the padding is the hit area, the dot stays painted in the content box */
+.dots,
+.tst-dots,
+.chat-head .dots {
+  gap: 0 !important;
+}
+.dots button,
+.tst-dots button,
+.chat-head .dots button {
+  box-sizing: content-box !important;
+  padding: 8px !important;
+  background-clip: content-box !important;
+}
+.dots button::after,
+.tst-dots button::after {
+  display: none !important;
+}
+.chat-head .dots button {
+  padding: 9px !important;
+}
+.tst-dots i {
+  inset: 8px !important;
+}
+/* Text in brand colour on light tints needs 4.5:1 */
+.seg a,
+.seg a[aria-current="page"],
+html .pricing-note a {
+  color: #3f4fd8 !important;
+}
+.p-ribbon {
+  background: #2f62d8 !important;
+}
+.bubble.q {
+  background: #4552dc !important;
+}
+html .dots button,
+html .dots button.on,
+html .tst-dots button,
+html .tst-dots button.on,
+html .chat-head .dots button,
+html .chat-head .dots button.on {
+  background-clip: content-box !important;
+}
