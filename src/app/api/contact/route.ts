@@ -57,11 +57,30 @@ export async function POST(request: Request) {
 
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
-    console.error("[contact] RESEND_API_KEY manquant : le message n'a pas été envoyé.");
-    return Response.json(
-      { error: "L'envoi automatique n'est pas encore activé.", fallback: true },
-      { status: 503 },
-    );
+    // No Resend key configured: deliver through FormSubmit (no account needed).
+    // The very first message sends Félix a one-time activation e-mail he must confirm.
+    const to = process.env.CONTACT_TO_EMAIL || site.email;
+    try {
+      const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(to)}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json", Referer: site.url, Origin: site.url },
+        body: JSON.stringify({
+          _subject: `Nouveau message de ${name} — felixtech.space`,
+          _replyto: email,
+          _template: "table",
+          _captcha: "false",
+          Nom: name,
+          "E-mail": email,
+          Message: message,
+        }),
+      });
+      const json = (await res.json().catch(() => ({}))) as { success?: string | boolean };
+      if (res.ok && String(json.success) === "true") return Response.json({ ok: true });
+      console.error("[contact] FormSubmit:", res.status, json);
+    } catch (err) {
+      console.error("[contact] FormSubmit:", err);
+    }
+    return Response.json({ error: "L'envoi automatique n'a pas abouti.", fallback: true }, { status: 503 });
   }
 
   const resend = new Resend(apiKey);

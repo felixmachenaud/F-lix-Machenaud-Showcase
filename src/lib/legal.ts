@@ -23,16 +23,16 @@ export const privacy: { intro: string; updated: string; sections: LegalSection[]
       title: "C. Bases légales du traitement",
       paragraphs: [
         "Réponse à votre message : le traitement des données que vous transmettez volontairement repose notamment sur l'exécution de mesures précontractuelles à votre demande et/ou sur l'intérêt légitime de WebSite Studio à répondre aux sollicitations professionnelles (article 6, paragraphes 1, points b) et f) du RGPD).",
-        "Case à cocher au formulaire : lorsque vous cochez la case d'acceptation de la présente politique avant envoi, vous confirmez avoir pris connaissance des informations sur le traitement et, le cas échéant, consentir expressément à l'acheminement du message via le prestataire technique Resend dans les conditions décrites ci-dessous (article 6, paragraphe 1, point a) du RGPD, lorsque le consentement constitue la base applicable à cette étape).",
+        "Case à cocher au formulaire : lorsque vous cochez la case d'acceptation de la présente politique avant envoi, vous confirmez avoir pris connaissance des informations sur le traitement et, le cas échéant, consentir expressément à l'acheminement du message via le prestataire technique d'envoi d'e-mails (Resend ou FormSubmit) dans les conditions décrites ci-dessous (article 6, paragraphe 1, point a) du RGPD, lorsque le consentement constitue la base applicable à cette étape).",
         "Journaux d'hébergement : intérêt légitime en matière de sécurité et de fonctionnement du service, et le cas échéant obligation légale selon la nature des données concernées.",
       ],
     },
     {
-      title: "D. Sous-traitants — hébergement (Vercel) et envoi d'e-mails (Resend)",
+      title: "D. Sous-traitants — hébergement (Vercel) et envoi d'e-mails (Resend, FormSubmit)",
       paragraphs: [
         "Certaines opérations sont confiées à des prestataires qui traitent des données pour le compte de WebSite Studio, dans le respect du RGPD.",
         "Hébergement : le site est hébergé par Vercel Inc. (États-Unis). Les données peuvent être traitées sur une infrastructure située hors de l'Union européenne. Ces transferts sont encadrés par les instruments prévus par la réglementation (notamment les clauses contractuelles types de la Commission européenne ou mécanismes équivalents), comme décrit dans la documentation et la politique de confidentialité de Vercel : vercel.com/legal/privacy-policy.",
-        "Envoi des messages issus du formulaire : la livraison de l'e-mail est assurée par Resend Inc. (États-Unis), en qualité de prestataire technique. Les données nécessaires à l'envoi (notamment expéditeur, destinataire, contenu du message) sont transmises à Resend pour cet unique besoin d'acheminement. Politique de confidentialité : resend.com/legal/privacy-policy.",
+        "Envoi des messages issus du formulaire : la livraison de l'e-mail est assurée par Resend Inc. (États-Unis), en qualité de prestataire technique. Les données nécessaires à l'envoi (notamment expéditeur, destinataire, contenu du message) sont transmises à Resend pour cet unique besoin d'acheminement. Politique de confidentialité : resend.com/legal/privacy-policy. Lorsque Resend n'est pas utilisé, l'acheminement est assuré par FormSubmit (formsubmit.co), dans les mêmes conditions et pour ce seul besoin.",
         "WebSite Studio ne revend pas vos données à des annonceurs et ne les cède pas à des tiers pour leur propre usage commercial indépendant du service décrit ci-dessus.",
       ],
     },

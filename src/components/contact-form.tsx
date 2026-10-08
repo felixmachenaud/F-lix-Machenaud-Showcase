@@ -177,7 +177,7 @@ ${payload.name.trim()} — ${payload.email.trim()}`;
             </label>
             {errors.consent && <p className="err">{errors.consent}</p>}
             <p className="fine">
-              Vos données sont transmises à notre prestataire Resend pour l&apos;acheminement de l&apos;e-mail et ne
+              Vos données sont transmises à notre prestataire d&apos;envoi d&apos;e-mails (Resend ou FormSubmit) pour l&apos;acheminement de l&apos;e-mail et ne
               seront pas revendues.
             </p>
             {formError && !mailto && (
