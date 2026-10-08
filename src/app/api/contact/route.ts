@@ -15,6 +15,13 @@ function rateLimited(ip: string) {
 }
 
 export async function POST(request: Request) {
+  // Only accept form posts coming from this site.
+  const origin = request.headers.get("origin");
+  const host = request.headers.get("host");
+  if (origin && host && new URL(origin).host !== host) {
+    return Response.json({ error: "Origine non autorisée." }, { status: 403 });
+  }
+
   let body: Record<string, unknown>;
   try {
     body = await request.json();
@@ -27,7 +34,8 @@ export async function POST(request: Request) {
     return Response.json({ ok: true });
   }
 
-  const name = String(body.name ?? "").trim();
+  // Newlines are stripped so nothing can be smuggled into the e-mail headers (subject).
+  const name = String(body.name ?? "").replace(/[\r\n]+/g, " ").trim();
   const email = String(body.email ?? "").trim();
   const message = String(body.message ?? "").trim();
   const consent = body.consent === true;
@@ -51,7 +59,7 @@ export async function POST(request: Request) {
   if (!apiKey) {
     console.error("[contact] RESEND_API_KEY manquant : le message n'a pas été envoyé.");
     return Response.json(
-      { error: `L'envoi est momentanément indisponible. Écrivez directement à ${site.email}.` },
+      { error: "L'envoi automatique n'est pas encore activé.", fallback: true },
       { status: 503 },
     );
   }

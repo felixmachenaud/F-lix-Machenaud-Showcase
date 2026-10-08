@@ -1,0 +1,12 @@
+# WebSite Studio — Félix Machenaud
+
+> Création de sites web sur mesure (vitrines, applications) par Félix Machenaud, développeur indépendant en France.
+
+## Pages principales
+- [Accueil](https://felixtech.space/): présentation du studio et résultats clients
+- [Réalisations — vitrines web](https://felixtech.space/productions/vitrines-web): Les Komplices, Hautefeuille, Welkeys, Eigenflow, L'Échappée
+- [Réalisations — applications](https://felixtech.space/productions/application): Conciergerie Carcassonne, Walt
+- [Tarifs](https://felixtech.space/pricing): Essentiel dès 690 €, Site vitrine dès 1190 €, Outils sur devis
+- [À propos](https://felixtech.space/a-propos)
+- [Pourquoi refaire son site](https://felixtech.space/pourquoi-refaire-site-web)
+- [Contact](https://felixtech.space/contact) · [Rendez-vous](https://felixtech.space/rendez-vous)

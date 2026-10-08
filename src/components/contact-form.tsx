@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ShinyButton } from "./ui/shiny-button";
+import { site } from "@/lib/data";
 
 type Status = "idle" | "sending" | "sent" | "error";
 type Field = "name" | "email" | "message" | "consent";
@@ -13,6 +14,8 @@ export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [errors, setErrors] = useState<Errors>({});
   const [formError, setFormError] = useState("");
+  // Prefilled mailto link offered when automatic sending is not configured on the server.
+  const [mailto, setMailto] = useState("");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -50,6 +53,13 @@ export function ContactForm() {
       }
       if (json.errors) setErrors(json.errors);
       setFormError(json.error ?? "");
+      if (json.fallback) {
+        const subject = `Nouveau message de ${payload.name.trim()} — felixtech.space`;
+        const body = `${payload.message.trim()}
+
+${payload.name.trim()} — ${payload.email.trim()}`;
+        setMailto(`mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+      }
       setStatus("error");
     } catch {
       setFormError("Connexion impossible. Vérifiez votre réseau et réessayez.");
@@ -170,10 +180,18 @@ export function ContactForm() {
               Vos données sont transmises à notre prestataire Resend pour l&apos;acheminement de l&apos;e-mail et ne
               seront pas revendues.
             </p>
-            {formError && (
+            {formError && !mailto && (
               <p className="err form-err" role="alert">
                 {formError}
               </p>
+            )}
+            {mailto && (
+              <div className="mail-fallback" role="alert">
+                <p>Votre message est prêt : envoyez-le en un clic depuis votre messagerie.</p>
+                <a className="btn btn-ghost" href={mailto}>
+                  Envoyer avec ma messagerie <span className="arrow">↗</span>
+                </a>
+              </div>
             )}
             <ShinyButton type="submit" disabled={status === "sending"}>
               {status === "sending" ? (

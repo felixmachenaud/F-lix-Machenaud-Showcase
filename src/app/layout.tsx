@@ -33,6 +33,12 @@ export const metadata: Metadata = {
     template: `%s — ${site.name}`,
   },
   description: site.description,
+  alternates: { canonical: "./" },
+  keywords: ["création site web", "site vitrine", "développeur web freelance", "refonte site internet", "SEO", "WebSite Studio"],
+  authors: [{ name: site.owner }],
+  creator: site.owner,
+  robots: { index: true, follow: true },
+  twitter: { card: "summary_large_image" },
   openGraph: {
     type: "website",
     locale: "fr_FR",
@@ -51,6 +57,24 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="fr" className={`${jakarta.variable} ${instrument.variable}`} suppressHydrationWarning>
       <body>
+        <script
+          type="application/ld+json"
+          // Structured data for search engines: who the studio is and how to reach it.
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ProfessionalService",
+              name: site.name,
+              url: site.url,
+              email: site.email,
+              telephone: site.phone,
+              founder: { "@type": "Person", name: site.owner },
+              areaServed: "FR",
+              description: site.description,
+              sameAs: [site.linkedin],
+            }),
+          }}
+        />
         <SmoothScroll />
         <Header />
         <main>{children}</main>
