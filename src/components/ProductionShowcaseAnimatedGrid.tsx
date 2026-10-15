@@ -14,6 +14,17 @@ const slideUp = {
 };
 
 export function ProductionShowcaseAnimatedGrid({ showcases }: Props) {
+  if (showcases.length === 0) {
+    return (
+      <p
+        role="status"
+        className="mx-auto mt-10 max-w-lg text-center text-sm text-gray-600 sm:mt-12 sm:text-base"
+      >
+        Aucun projet dans cette catégorie pour le moment.
+      </p>
+    );
+  }
+
   return (
     <div className="mx-auto mt-10 flex w-full max-w-5xl flex-col gap-12 overflow-visible pl-2.5 sm:gap-14 sm:pl-3 md:mt-12">
       {showcases.map((showcase, i) => (

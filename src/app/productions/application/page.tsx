@@ -1,12 +1,7 @@
-import { ProductionShowcaseAnimatedGrid } from "@/components/ProductionShowcaseAnimatedGrid";
-import { applicationShowcases } from "@/lib/productions";
+import { redirect } from "next/navigation";
+import { getProductionCategory } from "@/lib/productions";
 
-export const metadata = {
-  title: "Application — Nos productions — WebSite Studio",
-  description:
-    "Applications web sur mesure : Walt Community, plateforme de suivi mentorat.",
-};
-
+/** Ancienne URL « Application » : on conserve le lien pour ne pas casser les favoris. */
 export default function ApplicationPage() {
-  return <ProductionShowcaseAnimatedGrid showcases={applicationShowcases} />;
+  redirect(getProductionCategory("logiciel").href);
 }

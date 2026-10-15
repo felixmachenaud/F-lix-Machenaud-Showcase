@@ -5,7 +5,7 @@ import { WHITE_VIOLET_OUTLINE_SHADOW } from "@/lib/site";
 export const metadata = {
   title: "Nos productions — WebSite Studio",
   description:
-    "Sites web et applications réalisés : démonstrations et présentation des projets WebSite Studio.",
+    "Sites vitrine, logiciels et conciergeries réalisés : démonstrations et présentation des projets WebSite Studio.",
 };
 
 /**

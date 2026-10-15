@@ -1,10 +1,11 @@
 import { ProductionShowcaseAnimatedGrid } from "@/components/ProductionShowcaseAnimatedGrid";
-import { vitrineShowcases } from "@/lib/productions";
+import { getProductionCategory, vitrineShowcases } from "@/lib/productions";
+
+const category = getProductionCategory("vitrine");
 
 export const metadata = {
-  title: "Vitrines web — Nos productions — WebSite Studio",
-  description:
-    "Sites vitrine réalisés : Komplices, Lycée Hautefeuille, Welkeys, Eigenflow, L’Échappée.",
+  title: category.title,
+  description: category.description,
 };
 
 export default function VitrinesWebPage() {

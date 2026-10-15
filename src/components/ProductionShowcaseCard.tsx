@@ -82,26 +82,35 @@ export function ProductionShowcaseCard({ showcase }: Props) {
           </dl>
 
           <div className="mt-8">
-            <Link
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 rounded-full border-2 border-gray-900 bg-white px-5 py-2.5 text-sm font-bold text-gray-900 shadow-sm transition hover:bg-gray-900 hover:text-white sm:px-6 sm:text-[15px]"
-            >
-              Visiter
-              <svg
-                viewBox="0 0 24 24"
-                className="h-4 w-4 shrink-0 transition group-hover:translate-x-0.5"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden
+            {href ? (
+              <Link
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-2 rounded-full border-2 border-gray-900 bg-white px-5 py-2.5 text-sm font-bold text-gray-900 shadow-sm transition hover:bg-gray-900 hover:text-white sm:px-6 sm:text-[15px]"
               >
-                <path d="M5 12h14M13 6l6 6-6 6" />
-              </svg>
-            </Link>
+                Visiter
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-4 w-4 shrink-0 transition group-hover:translate-x-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden
+                >
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </Link>
+            ) : (
+              <p
+                role="status"
+                className="inline-flex items-center rounded-full border-2 border-dashed border-gray-300 bg-gray-50 px-5 py-2.5 text-sm font-bold text-gray-500 sm:px-6 sm:text-[15px]"
+              >
+                Lien bientôt disponible
+              </p>
+            )}
           </div>
         </div>
       </article>
