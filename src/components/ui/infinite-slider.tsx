@@ -57,8 +57,7 @@ export function InfiniteSlider({
 
     raf = requestAnimationFrame(tick);
 
-    const images = [...first.querySelectorAll("img")];
-    images.forEach((img) => {
+    Array.from(first.querySelectorAll("img")).forEach((img) => {
       if (!img.complete) img.decode().catch(() => undefined);
     });
 
