@@ -9,6 +9,12 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
+import { INTEGRATION_LOGOS } from "@/lib/integrations";
+import {
+  conciergerieShowcases,
+  logicielShowcases,
+  vitrineShowcases,
+} from "@/lib/productions";
 
 export type AnimationPhase = "scatter" | "line" | "circle";
 
@@ -19,6 +25,7 @@ const SCROLL_RANGE_PX = 1800;
 
 type HeroCard =
   | { kind: "image"; src: string }
+  | { kind: "logo"; src: string }
   | { kind: "emoji"; emoji: string; bg: string }
   | { kind: "sign"; label: string; bg: string; color: string };
 
@@ -35,29 +42,44 @@ const BRAND_LIVE = {
   rose: "#DB2777",
 } as const;
 
-/** Photos réelles + smileys / signes du métier (web, design, lancement). */
-const HERO_CARDS: HeroCard[] = [
-  { kind: "image", src: "/images/komplices.jpeg" },
-  { kind: "emoji", emoji: "💻", bg: BRAND_LIVE.violet },
-  { kind: "image", src: "/images/presentation1.jpeg" },
-  { kind: "sign", label: "</>", bg: BRAND_LIVE.yellow, color: "#111111" },
-  { kind: "image", src: "/images/presentation2.jpeg" },
-  { kind: "emoji", emoji: "🌐", bg: BRAND_LIVE.pink },
-  { kind: "image", src: "/images/presentation3.jpeg" },
-  { kind: "emoji", emoji: "✨", bg: BRAND_LIVE.lilac },
-  { kind: "image", src: "/images/presentation4.jpeg" },
-  { kind: "sign", label: "www", bg: BRAND_LIVE.blue, color: "#FFFFFF" },
-  { kind: "image", src: "/images/carcassonne.jpeg" },
-  { kind: "emoji", emoji: "🎨", bg: BRAND_LIVE.orange },
-  { kind: "image", src: "/images/presentation-walt.png" },
-  { kind: "emoji", emoji: "📱", bg: BRAND_LIVE.fuchsia },
-  { kind: "image", src: "/images/walt_picture.jpeg" },
-  { kind: "emoji", emoji: "🚀", bg: BRAND_LIVE.yellow },
-  { kind: "emoji", emoji: "💡", bg: BRAND_LIVE.pink },
-  { kind: "sign", label: "UI", bg: BRAND_LIVE.violet, color: "#FFFFFF" },
-  { kind: "emoji", emoji: "⚡", bg: BRAND_LIVE.green },
-  { kind: "emoji", emoji: "🖱️", bg: BRAND_LIVE.rose },
+/** Captures conservées dans l’anneau — le reste est remplacé par des logos d’outils. */
+const HERO_SCREENSHOTS = [
+  vitrineShowcases[0].imageSrc,
+  vitrineShowcases[1].imageSrc,
+  vitrineShowcases[2].imageSrc,
+  logicielShowcases[0].imageSrc,
+  conciergerieShowcases[0].imageSrc,
+  logicielShowcases[1].imageSrc,
 ];
+
+const HERO_DECOR: HeroCard[] = [
+  { kind: "sign", label: "</>", bg: BRAND_LIVE.yellow, color: "#111111" },
+  { kind: "emoji", emoji: "✨", bg: BRAND_LIVE.lilac },
+  { kind: "sign", label: "www", bg: BRAND_LIVE.blue, color: "#FFFFFF" },
+  { kind: "emoji", emoji: "🚀", bg: BRAND_LIVE.yellow },
+];
+
+function buildHeroCards(): HeroCard[] {
+  const logos: HeroCard[] = INTEGRATION_LOGOS.map((logo) => ({
+    kind: "logo",
+    src: logo.src,
+  }));
+  const shots: HeroCard[] = HERO_SCREENSHOTS.map((src) => ({
+    kind: "image",
+    src,
+  }));
+  const cards: HeroCard[] = [];
+  const count = Math.max(shots.length, logos.length);
+
+  for (let i = 0; i < count; i += 1) {
+    if (shots[i]) cards.push(shots[i]);
+    if (logos[i]) cards.push(logos[i]);
+  }
+
+  return [...cards, ...HERO_DECOR];
+}
+
+const HERO_CARDS: HeroCard[] = buildHeroCards();
 
 const TOTAL_IMAGES = HERO_CARDS.length;
 
@@ -79,9 +101,11 @@ type CardTarget = {
 function FlipCard({
   card,
   target,
+  canHover,
 }: {
   card: HeroCard;
   target: CardTarget;
+  canHover: boolean;
 }) {
   return (
     <motion.div
@@ -109,31 +133,43 @@ function FlipCard({
         transformStyle: "preserve-3d",
         perspective: "1000px",
       }}
-      className="pointer-events-auto cursor-pointer group"
+      className={canHover ? "pointer-events-auto cursor-pointer group" : "pointer-events-none"}
     >
       <motion.div
         className="relative h-full w-full"
         style={{ transformStyle: "preserve-3d" }}
         transition={{ duration: 0.6, type: "spring", stiffness: 260, damping: 20 }}
-        whileHover={{ rotateY: 180 }}
+        whileHover={canHover ? { rotateY: 180 } : undefined}
       >
         <div
-          className="absolute inset-0 flex h-full w-full items-center justify-center overflow-hidden rounded-xl shadow-lg"
+          className={`absolute inset-0 flex h-full w-full items-center justify-center overflow-hidden rounded-xl shadow-lg ${
+            card.kind === "logo" ? "ring-1 ring-gray-200" : ""
+          }`}
           style={{
             backfaceVisibility: "hidden",
             backgroundColor:
-              card.kind === "image" ? "#e5e5e5" : card.bg,
+              card.kind === "image"
+                ? "#e5e5e5"
+                : card.kind === "logo"
+                  ? "#ffffff"
+                  : card.bg,
           }}
         >
-          {card.kind === "image" ? (
+          {card.kind === "image" || card.kind === "logo" ? (
             <>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={card.src}
                 alt=""
-                className="h-full w-full object-cover"
+                className={
+                  card.kind === "logo"
+                    ? "h-[58%] w-[70%] object-contain"
+                    : "h-full w-full object-cover object-top"
+                }
               />
-              <div className="absolute inset-0 bg-black/10 transition-colors group-hover:bg-transparent" />
+              {card.kind === "image" ? (
+                <div className="absolute inset-0 bg-black/10 transition-colors group-hover:bg-transparent" />
+              ) : null}
             </>
           ) : card.kind === "emoji" ? (
             <span className="select-none text-[2.75rem] leading-none">
@@ -169,12 +205,21 @@ export function ScrollMorphHero({
   children,
 }: ScrollMorphHeroProps) {
   const reduceMotion = useReducedMotion();
+  const [canHover, setCanHover] = useState(false);
   const [introPhase, setIntroPhase] = useState<AnimationPhase>(
     reduceMotion ? "circle" : "scatter",
   );
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const media = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const sync = () => setCanHover(media.matches);
+    sync();
+    media.addEventListener("change", sync);
+    return () => media.removeEventListener("change", sync);
+  }, []);
 
   useEffect(() => {
     const node = containerRef.current;
@@ -393,6 +438,7 @@ export function ScrollMorphHero({
                   key={`${card.kind}-${index}`}
                   card={card}
                   target={target}
+                  canHover={canHover}
                 />
               );
             })}

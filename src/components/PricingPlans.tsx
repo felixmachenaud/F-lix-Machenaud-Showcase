@@ -212,7 +212,7 @@ export function PricingPlans() {
 
               <PriceBlock
                 prefix="à partir de"
-                amount="1190€"
+                amount="690€"
                 tone="light"
               />
 

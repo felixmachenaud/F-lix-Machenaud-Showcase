@@ -1,4 +1,32 @@
 /**
+ * Logos d’outils — fichiers dans /public/images/integrations/
+ */
+
+export type IntegrationLogo = {
+  id: string;
+  src: string;
+  alt: string;
+};
+
+/** Catalogue complet : hero landing + bandeau conciergerie. */
+export const INTEGRATION_LOGOS: IntegrationLogo[] = [
+  { id: "amenitiz", src: "/images/integrations/aminitiz.png", alt: "Amenitiz" },
+  { id: "beds24", src: "/images/integrations/beds24.png", alt: "Beds24" },
+  { id: "lodgify", src: "/images/integrations/lodgyfy.png", alt: "Lodgify" },
+  { id: "smoobu", src: "/images/integrations/smoobu.png", alt: "Smoobu" },
+  { id: "calendly", src: "/images/integrations/logo_calendly.png", alt: "Calendly" },
+  { id: "claude", src: "/images/integrations/Claude_AI_symbol.svg.png", alt: "Claude" },
+  { id: "gmail", src: "/images/integrations/Gmail_icon_(2020).svg.png", alt: "Gmail" },
+  { id: "meet", src: "/images/integrations/Google_Meet-Logo.wine.png", alt: "Google Meet" },
+  { id: "teams", src: "/images/integrations/Microsoft_Teams-Logo.wine.png", alt: "Microsoft Teams" },
+  {
+    id: "calendar",
+    src: "/images/integrations/google_calendar_logo_icon_159345.webp",
+    alt: "Google Agenda",
+  },
+];
+
+/**
  * Bloc « Intégrez vos outils de travail » — logos dans /public/images/integrations/
  * Les noms de fichiers correspondent aux assets présents dans le dossier.
  */

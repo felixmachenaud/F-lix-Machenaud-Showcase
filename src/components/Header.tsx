@@ -137,7 +137,7 @@ export function Header() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 flex justify-center bg-transparent px-4 pt-4 sm:px-6 sm:pt-5">
+      <header className="fixed inset-x-0 top-0 z-50 flex justify-center bg-transparent px-4 pt-[max(1rem,env(safe-area-inset-top))] sm:px-6 sm:pt-5">
         {isGradientPage ? (
           <div
             className={`flex w-full max-w-5xl items-center gap-2 rounded-2xl border px-3 py-3 sm:gap-4 sm:px-5 sm:py-3.5 ${navShellClass}`}

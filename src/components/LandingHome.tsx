@@ -6,10 +6,10 @@ import { ScrollMorphHero } from "@/components/ui/scroll-morph-hero";
 import { TestimonialsShowcase } from "@/components/TestimonialsShowcase";
 
 const ctaPrimary =
-  "inline-flex w-full max-w-[17.5rem] items-center justify-center rounded-full border-2 border-[#7C3AED] bg-[#7C3AED] px-6 py-3 text-center text-sm font-bold text-white shadow-md transition hover:bg-white hover:text-[#7C3AED] hover:shadow-lg active:scale-[0.98] sm:w-auto sm:min-w-[280px] sm:max-w-none sm:px-11 sm:py-4 sm:text-lg";
+  "inline-flex w-full max-w-[18.5rem] items-center justify-center rounded-full border-2 border-[#7C3AED] bg-[#7C3AED] px-5 py-3 text-center text-[13px] font-bold leading-snug text-white shadow-md transition hover:bg-white hover:text-[#7C3AED] hover:shadow-lg active:scale-[0.98] sm:w-auto sm:min-w-[280px] sm:max-w-none sm:px-11 sm:py-4 sm:text-lg";
 
 const ctaSecondary =
-  "inline-flex w-full max-w-[17.5rem] items-center justify-center rounded-full border border-gray-200 bg-white px-6 py-3 text-sm font-bold text-gray-900 shadow-sm transition hover:border-gray-300 hover:bg-gray-50 active:scale-[0.98] sm:w-auto sm:min-w-[280px] sm:max-w-none sm:px-11 sm:py-4 sm:text-lg";
+  "inline-flex w-full max-w-[18.5rem] items-center justify-center rounded-full border border-gray-200 bg-white px-5 py-3 text-[13px] font-bold leading-snug text-gray-900 shadow-sm transition hover:border-gray-300 hover:bg-gray-50 active:scale-[0.98] sm:w-auto sm:min-w-[280px] sm:max-w-none sm:px-11 sm:py-4 sm:text-lg";
 
 export function LandingHome() {
   /** Arrivée sur `/#avis` (lien depuis une autre page ou URL directe) : centrer la section */

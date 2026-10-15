@@ -291,6 +291,11 @@ export const productionSites: ProductionSite[] = productionShowcases.flatMap(
   ({ id, name, href }) => (href ? [{ id, name, href }] : [])
 );
 
+/** Vignettes du hero landing : une image par réalisation, dans l’ordre du catalogue. */
+export const productionHeroImages: string[] = productionShowcases.map(
+  (item) => item.imageSrc
+);
+
 /**
  * Fichiers essayés dans l’ordre (même nom, extensions courantes).
  * @deprecated conservé pour d’anciens composants éventuels

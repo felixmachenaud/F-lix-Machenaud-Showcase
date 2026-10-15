@@ -97,3 +97,7 @@ body {
       radial-gradient(ellipse 78% 68% at 50% 50%, rgba(237, 233, 254, 0.75) 0%, rgba(245, 243, 255, 0.3) 48%, transparent 72%);
   }
 }
+
+.group\/slider:hover .motion-safe\:animate-logo-marquee {
+  animation-duration: var(--logo-marquee-hover, 72s);
+}

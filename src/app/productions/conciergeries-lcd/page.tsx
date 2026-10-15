@@ -1,4 +1,5 @@
 import { ProductionShowcaseAnimatedGrid } from "@/components/ProductionShowcaseAnimatedGrid";
+import { WorkToolsLogoRibbon } from "@/components/WorkToolsLogoRibbon";
 import {
   conciergerieShowcases,
   getProductionCategory,
@@ -12,5 +13,10 @@ export const metadata = {
 };
 
 export default function ConciergeriesLcdPage() {
-  return <ProductionShowcaseAnimatedGrid showcases={conciergerieShowcases} />;
+  return (
+    <ProductionShowcaseAnimatedGrid
+      showcases={conciergerieShowcases}
+      afterFirst={<WorkToolsLogoRibbon />}
+    />
+  );
 }
