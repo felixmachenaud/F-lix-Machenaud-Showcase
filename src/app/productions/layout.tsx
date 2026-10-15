@@ -1,4 +1,3 @@
-import { IntegrationsWorkTools } from "@/components/IntegrationsWorkTools";
 import { ProductionsCategoryTabs } from "@/components/ProductionsCategoryTabs";
 import { WHITE_VIOLET_OUTLINE_SHADOW } from "@/lib/site";
 
@@ -36,8 +35,6 @@ export default function ProductionsLayout({
           <ProductionsCategoryTabs />
 
           {children}
-
-          <IntegrationsWorkTools />
         </div>
       </main>
     </div>

@@ -31,7 +31,7 @@ export const PRODUCTION_CATEGORIES: readonly ProductionCategory[] = [
     shortLabel: "Conciergeries",
     title: "Conciergeries & L.C.D — Nos productions — WebSite Studio",
     description:
-      "Sites de conciergerie et locations de courte durée : Pastor & Co, T3 Bastide Saint-Louis, Welkeys.",
+      "Sites de conciergerie et locations de courte durée : T3 Bastide Saint-Louis, Pastor & Co, Welkeys.",
   },
   {
     id: "logiciel",
@@ -222,25 +222,6 @@ export const logicielShowcases: ProductionShowcase[] = [
 
 export const conciergerieShowcases: ProductionShowcase[] = [
   {
-    id: "pastor-co",
-    name: "Pastor & Co",
-    href: "https://stephan-pastor-website.vercel.app/",
-    category: "conciergerie",
-    headlineLead: "Un site de ",
-    headlineItalic: "conciergerie à Nice",
-    headlineTail:
-      " pour Pastor & Co : présenter l’immobilier, les services et le parcours d’achat ou de location.",
-    description:
-      "Vitrine claire pour découvrir les biens, les services de conciergerie et les points de contact — un parcours pensé pour rassurer et convertir les demandes.",
-    stats: [
-      { value: "Nice", label: "Territoire" },
-      { value: "Biens", label: "Immobilier" },
-      { value: "Services", label: "Conciergerie" },
-    ],
-    imageSrc: "/images/pastor-co.png",
-    accentColor: "#2563eb",
-  },
-  {
     id: "t3-bastide-st-louis",
     name: "T3 Bastide Saint-Louis",
     href: "https://mockup-la-bastite-carcassonne.vercel.app/",
@@ -258,6 +239,25 @@ export const conciergerieShowcases: ProductionShowcase[] = [
     ],
     imageSrc: "/images/carcassonne.jpeg",
     accentColor: "#C2410C",
+  },
+  {
+    id: "pastor-co",
+    name: "Pastor & Co",
+    href: "https://stephan-pastor-website.vercel.app/",
+    category: "conciergerie",
+    headlineLead: "Un site de ",
+    headlineItalic: "conciergerie à Nice",
+    headlineTail:
+      " pour Pastor & Co : présenter l’immobilier, les services et le parcours d’achat ou de location.",
+    description:
+      "Vitrine claire pour découvrir les biens, les services de conciergerie et les points de contact — un parcours pensé pour rassurer et convertir les demandes.",
+    stats: [
+      { value: "Nice", label: "Territoire" },
+      { value: "Biens", label: "Immobilier" },
+      { value: "Services", label: "Conciergerie" },
+    ],
+    imageSrc: "/images/pastor-co.png",
+    accentColor: "#2563eb",
   },
   {
     id: "welkeys",

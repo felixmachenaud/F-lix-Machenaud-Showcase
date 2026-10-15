@@ -98,6 +98,14 @@ body {
   }
 }
 
-.group\/slider:hover .motion-safe\:animate-logo-marquee {
-  animation-duration: var(--logo-marquee-hover, 72s);
+.logo-marquee-host {
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.logo-marquee-track {
+  display: flex;
+  width: max-content;
+  flex-wrap: nowrap;
+  will-change: transform;
 }

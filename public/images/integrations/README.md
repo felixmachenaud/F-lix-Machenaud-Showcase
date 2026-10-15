@@ -1,23 +1,30 @@
 # Logos — intégrations outils
 
-Placez ici les **images des logos** (fichiers fournis par vous ou téléchargés depuis les sites officiels des éditeurs, dans le respect de leurs conditions d’usage).
+Fichiers utilisés par le **hero** de l’accueil et le bandeau **« Intégrez vos outils »** (page Conciergeries). Catalogue : `src/lib/integrations.ts`.
 
-## Fichiers attendus
+Les PNG doivent avoir un **vrai fond transparent** (canal alpha). Un fond blanc aplati réapparaît au défilement.
 
-| Fichier | Application |
-|---------|-------------|
-| `raycast.png` (ou `.webp` / `.svg`) | Raycast |
-| `google-meet.png` | Google Meet |
-| `outlook.png` | Microsoft Outlook |
-| `teams.png` | Microsoft Teams |
-| `gmail.png` | Gmail |
+## Fichiers du bandeau (ordre actuel)
 
-Le composant essaie les extensions dans cet ordre : **`.png`**, **`.webp`**, **`.svg`**.
+| Fichier | Marque |
+|---------|--------|
+| `smoobu.png` | Smoobu |
+| `Claude_AI_symbol.svg.png` | Claude |
+| `lodgyfy.png` | Lodgify |
+| `Microsoft_Teams-Logo.wine.png` | Microsoft Teams |
+| `aminitiz.png` | Amenitiz |
+| `Gmail_icon_(2020).svg.png` | Gmail |
+| `logo_calendly.png` | Calendly |
+| `beds24.png` | Beds24 |
+| `Guesty.png` | Guesty |
+| `google_calendar_logo_icon_159345.webp` | Google Agenda |
+| `superhote.png` | Superhôte |
+| `hostaway.png` | Hostaway |
+
+`Google_Meet-Logo.wine.png` reste dans le dossier mais n’est plus dans le bandeau.
 
 ## Recommandations
 
-- Format **PNG** ou **SVG** avec fond transparent de préférence.
-- Taille indicative : **512 × 512 px** minimum pour un rendu net sur grands écrans.
-- Nom du fichier = nom indiqué dans le tableau (sans majuscules ni espaces), par ex. `google-meet.png`.
-
-Si un fichier est absent, un **repli** avec les initiales s’affiche automatiquement.
+- PNG (ou WebP) avec alpha, recadré près du dessin.
+- Taille native suffisante (plusieurs centaines de px) : le bandeau scale en CSS.
+- Respecter les conditions d’usage des marques.

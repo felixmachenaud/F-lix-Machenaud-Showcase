@@ -11,15 +11,24 @@ Site vitrine pour **WebSite Studio** : présentation des services, tarifs, produ
 
 ## Pages principales
 
-| Route            | Contenu                                      |
-|------------------|----------------------------------------------|
-| `/`              | Accueil                                      |
-| `/services`      | Offre de services                            |
-| `/pricing`       | Tarifs                                       |
-| `/productions`   | Réalisations (vidéos / cartes)               |
-| `/a-propos`      | À propos                                     |
-| `/rendez-vous`   | Lien Calendly                                |
-| `/contact`       | Coordonnées + formulaire                     |
+| Route | Contenu |
+|-------|---------|
+| `/` | Accueil (hero scroll-morph + avis) |
+| `/services` | Offre de services |
+| `/pricing` | Tarifs |
+| `/productions` | Redirige vers les vitrines web |
+| `/productions/vitrines-web` | Réalisations — vitrines |
+| `/productions/conciergeries-lcd` | Réalisations — conciergeries & LCD |
+| `/productions/logiciels` | Réalisations — logiciels |
+| `/a-propos` | À propos |
+| `/rendez-vous` | Lien Calendly |
+| `/contact` | Coordonnées + formulaire |
+
+L’ancienne URL `/productions/application` redirige vers `/productions/logiciels`.
+
+Le catalogue des cartes est unique : `src/lib/productions.ts` (ordre des onglets, projets, visuels, liens). Les logos d’outils (hero + bandeau Conciergeries) sont dans `src/lib/integrations.ts` et `public/images/integrations/`.
+
+Voir aussi [`CHANGELOG.md`](CHANGELOG.md) pour l’historique des versions stables.
 
 ## Prérequis
 

@@ -1,57 +1,88 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
 type InfiniteSliderProps = {
   children: React.ReactNode;
   gap?: number;
-  duration?: number;
-  durationOnHover?: number;
-  direction?: "horizontal" | "vertical";
-  reverse?: boolean;
   className?: string;
+  /** Pixels par seconde. */
+  speed?: number;
 };
 
 /**
- * Bandeau en boucle. Animation CSS (plus stable que mesurer le DOM),
- * pause au survol et arrêt si l’utilisateur demande moins de mouvement.
+ * Deux copies collées, défilement au pixel : la fin de la file rejoint
+ * le début sans trou ni saut (pas de translateX(-50%)).
  */
 export function InfiniteSlider({
   children,
   gap = 16,
-  duration = 32,
-  durationOnHover,
-  direction = "horizontal",
-  reverse = false,
   className,
+  speed = 52,
 }: InfiniteSliderProps) {
-  const isVertical = direction === "vertical";
+  const trackRef = useRef<HTMLDivElement>(null);
+  const firstRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    const first = firstRef.current;
+    if (!track || !first) return;
+
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (reduce.matches) {
+      track.style.transform = "translate3d(0,0,0)";
+      return;
+    }
+
+    let x = 0;
+    let raf = 0;
+    let last = performance.now();
+    let running = true;
+
+    const loopWidth = () => first.getBoundingClientRect().width;
+
+    const tick = (now: number) => {
+      if (!running) return;
+      const dt = Math.min(0.05, (now - last) / 1000);
+      last = now;
+      const width = loopWidth();
+      if (width > 1) {
+        x -= speed * dt;
+        while (x <= -width) x += width;
+        track.style.transform = `translate3d(${x}px,0,0)`;
+      }
+      raf = requestAnimationFrame(tick);
+    };
+
+    raf = requestAnimationFrame(tick);
+
+    const images = [...first.querySelectorAll("img")];
+    images.forEach((img) => {
+      if (!img.complete) img.decode().catch(() => undefined);
+    });
+
+    return () => {
+      running = false;
+      cancelAnimationFrame(raf);
+    };
+  }, [speed]);
+
+  const setStyle = { gap: `${gap}px`, paddingRight: `${gap}px` };
 
   return (
-    <div className={cn("group/slider overflow-hidden", className)}>
-      <div
-        className={cn(
-          "flex w-max motion-safe:animate-logo-marquee motion-reduce:animate-none",
-          isVertical && "flex-col",
-        )}
-        style={
-          {
-            gap: `${gap}px`,
-            animationDirection: reverse ? "reverse" : "normal",
-            ["--logo-marquee-duration" as string]: `${duration}s`,
-            ["--logo-marquee-hover" as string]: `${durationOnHover ?? duration * 2}s`,
-          } as React.CSSProperties
-        }
-      >
+    <div className={cn("logo-marquee-host", className)}>
+      <div ref={trackRef} className="logo-marquee-track">
         <div
-          className={cn("flex shrink-0", isVertical && "flex-col")}
-          style={{ gap: `${gap}px` }}
+          ref={firstRef}
+          className="flex shrink-0 items-center"
+          style={setStyle}
         >
           {children}
         </div>
         <div
-          className={cn("flex shrink-0", isVertical && "flex-col")}
-          style={{ gap: `${gap}px` }}
+          className="flex shrink-0 items-center"
+          style={setStyle}
           aria-hidden
         >
           {children}

@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
 import { motion } from "framer-motion";
 import { ProductionShowcaseCard } from "@/components/ProductionShowcaseCard";
 import type { ProductionShowcase } from "@/lib/productions";
@@ -15,33 +15,6 @@ const slideUp = {
   initial: { opacity: 0, y: 48 },
   animate: { opacity: 1, y: 0 },
 };
-
-function ShowcaseList({
-  items,
-  delayOffset = 0,
-}: {
-  items: ProductionShowcase[];
-  delayOffset?: number;
-}) {
-  return (
-    <div className="mx-auto flex w-full max-w-5xl flex-col gap-12 overflow-visible pl-2.5 sm:gap-14 sm:pl-3">
-      {items.map((showcase, i) => (
-        <motion.div
-          key={showcase.id}
-          {...slideUp}
-          transition={{
-            duration: 0.55,
-            delay: 0.06 + (delayOffset + i) * 0.12,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-          className="h-full w-full"
-        >
-          <ProductionShowcaseCard showcase={showcase} />
-        </motion.div>
-      ))}
-    </div>
-  );
-}
 
 export function ProductionShowcaseAnimatedGrid({
   showcases,
@@ -58,13 +31,28 @@ export function ProductionShowcaseAnimatedGrid({
     );
   }
 
-  const [first, ...rest] = showcases;
-
   return (
-    <div className="mx-auto mt-10 w-full md:mt-12">
-      <ShowcaseList items={[first]} />
-      {afterFirst}
-      {rest.length > 0 ? <ShowcaseList items={rest} delayOffset={1} /> : null}
+    <div className="mx-auto mt-10 flex w-full max-w-5xl flex-col gap-12 overflow-visible pl-2.5 sm:gap-16 sm:pl-3 md:mt-12 md:gap-[4.5rem]">
+      {showcases.map((showcase, i) => (
+        <Fragment key={showcase.id}>
+          <motion.div
+            {...slideUp}
+            transition={{
+              duration: 0.55,
+              delay: 0.06 + i * 0.12,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="h-full w-full"
+          >
+            <ProductionShowcaseCard showcase={showcase} />
+          </motion.div>
+          {i === 0 && afterFirst ? (
+            <div className="w-full" key="after-first">
+              {afterFirst}
+            </div>
+          ) : null}
+        </Fragment>
+      ))}
     </div>
   );
 }

@@ -6,6 +6,7 @@ type Logo = {
   alt: string;
   width?: number;
   height?: number;
+  scale?: number;
 };
 
 type LogoCloudProps = React.ComponentProps<"div"> & {
@@ -17,23 +18,27 @@ export function LogoCloud({ className, logos, ...props }: LogoCloudProps) {
     <div
       {...props}
       className={cn(
-        "overflow-hidden py-5 [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]",
+        "pointer-events-none py-4 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]",
         className,
       )}
     >
-      <InfiniteSlider gap={56} reverse duration={36} durationOnHover={72}>
-        {logos.map((logo) => (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            alt={logo.alt}
-            className="pointer-events-none h-8 w-auto max-w-[7.5rem] shrink-0 select-none object-contain sm:h-9 md:h-10"
-            height={logo.height || 40}
-            key={`logo-${logo.alt}`}
-            loading="lazy"
-            src={logo.src}
-            width={logo.width || 120}
-          />
-        ))}
+      <InfiniteSlider gap={72}>
+        {logos.map((logo) => {
+          const scale = logo.scale || 1;
+          return (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              alt={logo.alt}
+              className="pointer-events-none h-[calc(2.5rem*var(--logo-scale,1))] w-auto max-w-[calc(12rem*var(--logo-scale,1))] shrink-0 bg-transparent object-contain select-none sm:h-[calc(3rem*var(--logo-scale,1))] md:h-[calc(3.5rem*var(--logo-scale,1))]"
+              height={Math.round((logo.height || 56) * scale)}
+              key={`logo-${logo.alt}`}
+              decoding="async"
+              src={logo.src}
+              style={{ ["--logo-scale" as string]: String(scale) }}
+              width={Math.round((logo.width || 160) * scale)}
+            />
+          );
+        })}
       </InfiniteSlider>
     </div>
   );
