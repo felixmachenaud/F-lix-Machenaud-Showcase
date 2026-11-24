@@ -22,7 +22,7 @@ export const PRODUCTION_CATEGORIES: readonly ProductionCategory[] = [
     shortLabel: "Vitrines",
     title: "Vitrines web — Nos productions — WebSite Studio",
     description:
-      "Sites vitrine réalisés : Alexandra Gillet, Les Komplices, L’Échappée, Lycée Hautefeuille, Eigenflow.",
+      "Sites vitrine réalisés : Alexandra Gillet, Les Komplices, Lycée Hautefeuille.",
   },
   {
     id: "conciergerie",
@@ -122,25 +122,6 @@ export const vitrineShowcases: ProductionShowcase[] = [
     accentColor: "#FF1493",
   },
   {
-    id: "lechappee",
-    name: "L’Échappée",
-    href: "https://lechappee-mockup.vercel.app/#manifesto",
-    category: "vitrine",
-    headlineLead: "Un site ",
-    headlineItalic: "innovant et immersif",
-    headlineTail:
-      " pour le restaurant — découvrir les assiettes, comme le pigeon des Costières, en 3D depuis son smartphone.",
-    description:
-      "Une vitrine centrée sur l’image et le décor, où la scénographie des plats et l’ambiance du lieu prennent toute la place pour faire vivre l’expérience avant même la visite.",
-    stats: [
-      { value: "3D", label: "Assiettes interactives" },
-      { value: "Mobile", label: "Découverte smartphone" },
-      { value: "Décor", label: "Mise en scène" },
-    ],
-    imageSrc: "/images/presentation4.jpeg",
-    accentColor: "#facc15",
-  },
-  {
     id: "hautefeuille",
     name: "Lycée Hautefeuille",
     href: "https://web-site-htf.vercel.app",
@@ -157,25 +138,6 @@ export const vitrineShowcases: ProductionShowcase[] = [
       { value: "100%", label: "Accessibilité visée" },
     ],
     imageSrc: "/images/presentation1.jpeg",
-  },
-  {
-    id: "eigenflow",
-    name: "Eigenflow",
-    href: "https://www.eigenflow.fr/fr#testimonials",
-    category: "vitrine",
-    headlineLead: "Un site ",
-    headlineItalic: "clair et orienté preuve",
-    headlineTail:
-      " pour présenter l’offre, structurer le discours et mettre en avant les témoignages clients.",
-    description:
-      "Mise en avant des retours clients, hiérarchie des contenus et parcours lisible : une vitrine pensée pour renforcer la confiance et soutenir la conversion.",
-    stats: [
-      { value: "Témoignages", label: "Preuve sociale" },
-      { value: "Offre", label: "Clarté" },
-      { value: "CTA", label: "Conversion" },
-    ],
-    imageSrc: "/images/presentation3.jpeg",
-    accentColor: "#7dd3fc",
   },
 ];
 
